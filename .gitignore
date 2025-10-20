@@ -97,3 +97,7 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+Assets/Fonts/Moria.asset
+Assets/Fonts/Moria.asset.meta
+Assets/Fonts/MoriaCitadel.TTF
+Assets/Fonts/MoriaCitadel.TTF.meta
