@@ -1,44 +1,90 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 
 public class FadeInOut : MonoBehaviour
 {
-    [SerializeField] private float blinkSpeed = 2f;
+    private Animator anim;          // Main text animation
+    private Animator childAnim;     // Mirror text animation
 
-    private TMP_Text tmpText;
-    private float timer;
-    private Coroutine blinkTextCo;
+    // Main text strings
+    [SerializeField] private string fadeOutAnim;
+    [SerializeField] private string fadeInAnim;
 
-    private void Awake()
-    {
-        tmpText = GetComponent<TMP_Text>();
-    }
+    // Mirror text strings
+    [SerializeField] private string lowAlphaOutAnim;
+    [SerializeField] private string lowAlphaInAnim;
+
+    // Caching for optimization
+    private WaitForSeconds waitTime = new WaitForSeconds(1.5f);
+
+    private Coroutine fadeInOutCo;
 
     private void Start()
     {
-       // blinkTextCo = StartCoroutine(BlinkTextCo(1f));
+        anim = GetComponent<Animator>();
+
+        foreach(Animator a in GetComponentsInChildren<Animator>(true)) // Removes main text Animator, ensures only the mirror text animator is called
+        {
+            if(a != anim)
+            {
+                childAnim = a;
+                break;
+            }
+        }
+
+        fadeInOutCo = StartCoroutine(FadeInOutCo()); // Starts fade anim
     }
 
     private void Update()
     {
+        FadeOnButtonPress();
+    }
+
+    // Stop all coroutines, plays fade out one last time before disabling both texts
+    private void FadeOnButtonPress()
+    {
         if (Input.anyKeyDown)
         {
-            this.gameObject.SetActive(false);
-            if(blinkTextCo != null )
-                StopCoroutine(blinkTextCo);
+            if (fadeInOutCo != null)
+                StopCoroutine(fadeInOutCo);
+
+            if (anim != null)
+                anim.Play(fadeOutAnim, 0, 0f);
+
+            if (childAnim != null)
+                childAnim.Play(lowAlphaOutAnim, 0, 0f);
+
+            StartCoroutine(DisableAfterFadeCo());
         }
     }
 
-    //private IEnumerator BlinkTextCo(float duration)
-    //{
-    //    timer = 0f;
+    // Ensures the animation plays before the texts get disabled
+    private IEnumerator DisableAfterFadeCo()
+    {
+        yield return waitTime;
 
-    //    while(timer < blinkSpeed)
-    //    {
-    //        timer += Time.deltaTime;
+        gameObject.SetActive(false);
+    }
 
-    //        //float alpha 
-    //    }
-    //}
+    // Plays the animations as long as the texts exist (before pressing any key)
+    private IEnumerator FadeInOutCo()
+    {
+        while (true)
+        {
+            PlayBothAnimations(fadeOutAnim, lowAlphaOutAnim);
+            yield return waitTime;
+
+            PlayBothAnimations(fadeInAnim, lowAlphaInAnim);
+            yield return waitTime;
+        }
+    }
+    
+    // Helper function to ensure both animations are sync'd
+    private void PlayBothAnimations(string mainAnim, string childAnim)
+    {
+        if (anim != null)
+            anim.Play(mainAnim, 0, 0f);
+        if (this.childAnim != null)
+            this.childAnim.Play(childAnim, 0, 0f);
+    }
 }
