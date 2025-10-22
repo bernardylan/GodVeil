@@ -43,7 +43,7 @@ public class FadeInOut : MonoBehaviour
     // Stop all coroutines, plays fade out one last time before disabling both texts
     private void FadeOnButtonPress()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.H))
         {
             if (fadeInOutCo != null)
                 StopCoroutine(fadeInOutCo);

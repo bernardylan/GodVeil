@@ -734,6 +734,7 @@ GameObject:
   - component: {fileID: 1017704305}
   - component: {fileID: 1017704304}
   - component: {fileID: 1017704306}
+  - component: {fileID: 1017704308}
   m_Layer: 5
   m_Name: ButtonToStartTEXT
   m_TagString: Untagged
@@ -758,8 +759,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -386.9, y: -5}
-  m_SizeDelta: {x: 761.051, y: 31.8}
+  m_AnchoredPosition: {x: -433, y: 4}
+  m_SizeDelta: {x: 815.8223, y: 34.5385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1017704304
 MonoBehaviour:
@@ -781,10 +782,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Any Button To Start
+  m_text: Appuyez sur une touche pour continuer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5d0013404acd95b4daff00f36c6ee867, type: 2}
-  m_sharedMaterial: {fileID: 955275483014429619, guid: 5d0013404acd95b4daff00f36c6ee867, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 399f59c6c0fd08c499c5b40834aece84, type: 2}
+  m_sharedMaterial: {fileID: 1524563177486598892, guid: 399f59c6c0fd08c499c5b40834aece84, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -808,8 +809,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -846,7 +847,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -85.21069, w: 0}
+  m_margin: {x: 0, y: 0, z: -248.73291, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -898,6 +899,46 @@ MonoBehaviour:
   fadeInAnim: FadeAnim
   lowAlphaOutAnim: LowAlphaFadeAnim
   lowAlphaInAnim: LowAlphaFadeInAnim
+--- !u!114 &1017704308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017704302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3137637dad5324b4493a1698ad199fb2
+    m_TableEntryReference:
+      m_KeyId: 26163011584
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1017704304}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1142624283
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,6 +951,7 @@ GameObject:
   - component: {fileID: 1142624286}
   - component: {fileID: 1142624285}
   - component: {fileID: 1142624287}
+  - component: {fileID: 1142624288}
   m_Layer: 5
   m_Name: ButtonToStartTextMIRROR
   m_TagString: Untagged
@@ -933,8 +975,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -31.800024}
-  m_SizeDelta: {x: 761.051, y: 31.8}
+  m_AnchoredPosition: {x: 24, y: -43}
+  m_SizeDelta: {x: 815.4779, y: 31.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1142624285
 MonoBehaviour:
@@ -956,10 +998,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Any Button To Start
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5d0013404acd95b4daff00f36c6ee867, type: 2}
-  m_sharedMaterial: {fileID: 955275483014429619, guid: 5d0013404acd95b4daff00f36c6ee867, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 399f59c6c0fd08c499c5b40834aece84, type: 2}
+  m_sharedMaterial: {fileID: 1524563177486598892, guid: 399f59c6c0fd08c499c5b40834aece84, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -983,8 +1025,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1021,7 +1063,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -85.03235, w: 0}
+  m_margin: {x: 0, y: 0, z: -200.34027, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1057,6 +1099,46 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1142624288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142624283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:3137637dad5324b4493a1698ad199fb2
+    m_TableEntryReference:
+      m_KeyId: 26163011584
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1142624285}
+        m_TargetAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1494674773
 GameObject:
   m_ObjectHideFlags: 0
