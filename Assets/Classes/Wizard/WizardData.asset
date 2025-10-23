@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3168e047acb30ef43bad273f1751b788, type: 3}
+  m_Name: WizardData
+  m_EditorClassIdentifier: Assembly-CSharp::ClassData
+  className: Wizard
+  classIcon: {fileID: 0}
+  animator: {fileID: 0}
+  rank: 1
+  isLocked: 0
+  baseStats: {fileID: 11400000, guid: 490eeaee28badf54c968add2a31f02be, type: 2}
+  autoAttack: {fileID: 11400000, guid: 7b129cdf49010e743b53f1b8f3a8f3e8, type: 2}
+  specialSkill: {fileID: 11400000, guid: 1466d90984fc72e47869d5a6370256b5, type: 2}
+  ultimateSkill: {fileID: 11400000, guid: 864f377a7d78eb747bb89225d6d0b460, type: 2}
+  passive: {fileID: 11400000, guid: f68156cce2f6ce644b850b299d3dd0e1, type: 2}
