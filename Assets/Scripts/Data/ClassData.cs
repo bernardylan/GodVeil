@@ -6,7 +6,6 @@ public class ClassData : ScriptableObject
     [Header("Base Info")]
     public string className;
     public Sprite classIcon;
-    public GameObject classObject;
     public RuntimeAnimatorController animator;
     public RankType rank;
     public bool isLocked = false;
@@ -21,7 +20,7 @@ public class ClassData : ScriptableObject
     public PassiveData passive;
 }
 
-public enum StatType { Strength, Dexterity, Intelligence, Endurance, Magic }
+public enum StatType { Strength, Dexterity, Intelligence }
 public enum SkillType { AutoAttack, Special, Ultimate }
 public enum ElementType { None, Fire, Water, Earth, Lightning, Poison }
-public enum RankType { Rank0, Rank1, Rank2 }
+public enum RankType { Rank0, Rank1, Rank2, Rank3 }

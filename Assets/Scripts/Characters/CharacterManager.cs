@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static CharacterManager Instance { get; private set; }
+    private void Awake() => Instance = this;
+
+    [SerializeField] private ClassData currentClass;
+    [SerializeField] private CharacterStats currentStats;
+
+    private void Start()
     {
-        
+        InitializeCharacter(currentClass);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitializeCharacter(ClassData classData)
     {
-        
+        currentClass = classData;
+        currentStats = new CharacterStats(classData.baseStats);
+
+        Debug.Log($"Initialized class : {classData.className}");
     }
+
+    public void EquipSkill(SkillData skill) => Debug.Log($"Equipped {skill.skillName}");
+    public void ApplyPassive(PassiveData passive) => Debug.Log($"Applied passive {passive.passiveName}");
 }

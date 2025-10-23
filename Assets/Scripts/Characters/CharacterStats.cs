@@ -1,16 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
+public class CharacterStats
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Dictionary<StatType, int> stats = new();
 
-    // Update is called once per frame
-    void Update()
+    public CharacterStats(StatProfile profile)
     {
-        
+        foreach (var s in profile.stats)
+            stats[s.type] = s.proficiency;
     }
+    public int GetProficiency(StatType type) => stats.ContainsKey(type) ? stats[type] : 0;
 }

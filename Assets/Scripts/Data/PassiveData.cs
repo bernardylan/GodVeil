@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class PassiveData : MonoBehaviour
+[CreateAssetMenu(menuName = "GodVeil/Passive Data")]
+public class PassiveData : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public string passiveName;
+    public string description;
+    public PassiveEffect[] effects;
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[System.Serializable]
+public class PassiveEffect
+{
+    public StatType affectedStat;
+    public float modifier;
 }

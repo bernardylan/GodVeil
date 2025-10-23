@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class SkillData : MonoBehaviour
+[CreateAssetMenu(menuName = "GodVeil/Skill Data")]
+public class SkillData : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string skillName;
+    public Sprite icon;
+    public SkillType skillType;
+    public float cooldown;
+    public float damageMultiplier;
+    public ElementType element;
+    public GameObject projectilePrefab;    
 }
