@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Skills Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: Skills
+  m_TableCollectionNameGuidString: 5ba31bde709bc7b4b8bc651bd1e7de69
+  m_Entries:
+  - m_Id: 2143018766336
+    m_Key: RANGER_AUTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26676933120000
+    m_Key: RANGER_AUTO_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2187943956480
+    m_Key: RANGER_SPECIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26695673270272
+    m_Key: RANGER_SPECIAL_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2195292377088
+    m_Key: RANGER_ULTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26718658056192
+    m_Key: RANGER_ULTI_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2246701961216
+    m_Key: ROGUE_AUTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26836761268224
+    m_Key: ROGUE_AUTO_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2248480346112
+    m_Key: ROGUE_SPECIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26984073613312
+    m_Key: ROGUE_SPECIAL_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2249931575296
+    m_Key: ROGUE_ULTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27160066609152
+    m_Key: ROGUE_ULTI_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206147899392
+    m_Key: VILLAGER_AUTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26782843490304
+    m_Key: VILLAGER_AUTO_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 208995831808
+    m_Key: VILLAGER_SPECIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27000817274880
+    m_Key: VILLAGER_SPECIAL_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 211185258496
+    m_Key: VILLAGER_ULTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27054504366080
+    m_Key: VILLAGER_ULTI_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1949862678528
+    m_Key: WARRIOR_AUTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26807610855424
+    m_Key: WARRIOR_AUTO_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1975368241152
+    m_Key: WARRIOR_SPECIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26890427387904
+    m_Key: WARRIOR_SPECIAL_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1991667306496
+    m_Key: WARRIOR_ULTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27024234074112
+    m_Key: WARRIOR_ULT_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2064350400512
+    m_Key: WIZARD_AUTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26856893927424
+    m_Key: WIZARD_AUTO_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2069085769728
+    m_Key: WIZARD_SPECIAL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26956785471488
+    m_Key: WIZARD_SPECIAL_DESC
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2071002566656
+    m_Key: WIZARD_ULTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27179221995520
+    m_Key: WIZARD_ULTI_DESC
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3891349223143899211
+  references:
+    version: 2
+    RefIds:
+    - rid: 3891349223143899211
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1761307873826

@@ -22,7 +22,7 @@ public class ClassEvolutionUI : MonoBehaviour
         onSelect = onSelectCallback;
 
         // Nom de la classe
-        classNameText.text = LocalizationManager.GetLocalizedString(classData.className);
+        classNameText.text = LocalizationManager.GetLocalizedString(classData.className, "ClassNames");
 
         // Proficiencies
         proficiencyText.text = "";
@@ -34,18 +34,29 @@ public class ClassEvolutionUI : MonoBehaviour
         // Clear previous icons
         foreach (Transform t in skillContainer) Destroy(t.gameObject);
 
-        // Passif comme un skill
+        // Ajout passif comme skill (si existant)
         if (classData.passive != null)
         {
-            AddSkillOrPassiveIcon(classData.passive.passiveNameKey, classData.passive.icon);
+            AddSkillOrPassiveIcon(
+                classData.passive.icon,
+                classData.passive.passiveNameKey,
+                classData.passive.passiveDescriptionKey,
+                "Passives"
+            );
         }
 
-        // Skills
+        // Ajout des skills
         SkillData[] skills = { classData.autoAttack, classData.specialSkill, classData.ultimateSkill };
         foreach (var skill in skills)
         {
             if (skill == null) continue;
-            AddSkillOrPassiveIcon(skill.skillNameKey, skill.icon);
+
+            AddSkillOrPassiveIcon(
+                skill.icon,
+                skill.skillNameKey,
+                skill.skillDescriptionKey,
+                "Skills"
+            );
         }
 
         // Bouton de sélection
@@ -53,24 +64,26 @@ public class ClassEvolutionUI : MonoBehaviour
         selectButton.onClick.AddListener(() => onSelect?.Invoke(currentClass));
     }
 
-    private void AddSkillOrPassiveIcon(string nameKey, Sprite iconSprite)
+    private void AddSkillOrPassiveIcon(Sprite iconSprite, string nameKey, string descriptionKey, string tableName)
     {
         GameObject go = Instantiate(skillIconPrefab, skillContainer);
         Image icon = go.GetComponent<Image>();
         icon.sprite = iconSprite;
 
-        // EventTrigger pour tooltip
         EventTrigger trigger = go.GetComponent<EventTrigger>();
         if (!trigger) trigger = go.AddComponent<EventTrigger>();
 
+        // PointerEnter -> affiche tooltip
         var entryEnter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
         entryEnter.callback.AddListener((e) =>
         {
-            string localizedText = LocalizationManager.GetLocalizedString(nameKey);
-            TooltipManager.Instance.Show(localizedText, Input.mousePosition);
+            string name = LocalizationManager.GetLocalizedString(nameKey, tableName);
+            string desc = LocalizationManager.GetLocalizedString(descriptionKey, tableName);
+            TooltipManager.Instance.Show($"{name}\n{desc}");
         });
         trigger.triggers.Add(entryEnter);
 
+        // PointerExit -> cache tooltip
         var entryExit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
         entryExit.callback.AddListener((e) => TooltipManager.Instance.Hide());
         trigger.triggers.Add(entryExit);

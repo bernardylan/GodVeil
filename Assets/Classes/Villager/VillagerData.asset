@@ -21,4 +21,4 @@ MonoBehaviour:
   autoAttack: {fileID: 11400000, guid: 4d529a26ef8a71742a7fd814d224e600, type: 2}
   specialSkill: {fileID: 11400000, guid: 7611b82210e92c04d9476cc2a09316b8, type: 2}
   ultimateSkill: {fileID: 11400000, guid: 20ef6663ab9b17740a0b47f47e81e199, type: 2}
-  passive: {fileID: 0}
+  passive: {fileID: 11400000, guid: ca431a7173d581b489486f28df31cdb1, type: 2}

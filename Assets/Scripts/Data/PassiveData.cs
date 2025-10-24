@@ -10,7 +10,6 @@ public class PassiveData : ScriptableObject
     [Header("Localization Keys")]
     public string passiveNameKey;        // ex: "Villager_Passive_Name"
     public string passiveDescriptionKey;
-
 }
 
 [System.Serializable]

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
+using System.Collections;
 
 public class LocalizationManager : MonoBehaviour
 {
@@ -17,17 +19,26 @@ public class LocalizationManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Return the translation of a key (from localization package)
+    /// Get the translation from a key
     /// </summary>
-    public static string GetLocalizedString(string key)
+    /// <param name="key">key in the table (ex : "Villager_AutoAttack_Name")</param>
+    /// <param name="tableName">Name of the table (ex : "Skills", "Classes", "Passives")</param>
+    /// <returns>translation text</returns>
+    public static string GetLocalizedString(string key, string tableName)
     {
-        // Search the key in the reference table of the package
-        if (LocalizationSettings.StringDatabase != null)
+        if (LocalizationSettings.StringDatabase == null)
         {
-            return LocalizationSettings.StringDatabase.GetLocalizedString(key);
+            Debug.LogWarning("Localization StringDatabase is null");
+            return key;
         }
 
-        Debug.LogWarning($"Didn't find the key : {key}");
-        return key;
+        string result = LocalizationSettings.StringDatabase.GetLocalizedString(tableName, key);
+
+        if (string.IsNullOrEmpty(result))
+        {
+            Debug.LogWarning($"No translation found for '{key}' in table '{tableName}'");
+            return key;
+        }
+        return result;
     }
 }

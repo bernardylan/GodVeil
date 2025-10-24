@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Skills_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 5ba31bde709bc7b4b8bc651bd1e7de69, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 206147899392
+    m_Localized: Stick Hit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 208995831808
+    m_Localized: Trip Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 211185258496
+    m_Localized: Call for Help
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1949862678528
+    m_Localized: Sword Slash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1975368241152
+    m_Localized: Shield Bash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1991667306496
+    m_Localized: Battle Cry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2064350400512
+    m_Localized: Magic Bolt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2069085769728
+    m_Localized: Fireball
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2071002566656
+    m_Localized: Arcane Surge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2143018766336
+    m_Localized: Quick Shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2187943956480
+    m_Localized: Multi-Shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2195292377088
+    m_Localized: Rain of Arrows
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2246701961216
+    m_Localized: Dagger Stab
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2248480346112
+    m_Localized: Shadow Step
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2249931575296
+    m_Localized: Assassinate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26676933120000
+    m_Localized: Shoot an arrow at your target with precision.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26695673270272
+    m_Localized: Fire several arrows in a spread to hit multiple enemies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26836761268224
+    m_Localized: A quick stab aimed at vital points, deals moderate damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27160066609152
+    m_Localized: 'Strike a single enemy with deadly precision, dealing massive damage.
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26984073613312
+    m_Localized: Teleport behind your target for a surprise attack.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26718658056192
+    m_Localized: Call down a volley of arrows over a wide area.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26782843490304
+    m_Localized: Hit a nearby enemy with your trusty stick.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27000817274880
+    m_Localized: Try to trip your opponent, slowing them for a short time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27054504366080
+    m_Localized: Yell loudly to summon nearby villagers to distract enemies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26807610855424
+    m_Localized: A quick slash dealing moderate physical damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26890427387904
+    m_Localized: Bash the enemy with your shield, stunning them briefly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27024234074112
+    m_Localized: "Shout to boost your allies\u2019 attack power and morale."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26956785471488
+    m_Localized: Launch a fireball that explodes on impact, dealing AoE damage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26856893927424
+    m_Localized: Fire a small arcane projectile at a single enemy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27179221995520
+    m_Localized: Unleash raw magic, massively increasing spell damage for a short
+      duration.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

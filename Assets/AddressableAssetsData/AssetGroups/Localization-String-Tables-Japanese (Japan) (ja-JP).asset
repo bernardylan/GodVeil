@@ -21,14 +21,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ja-JP
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1c186ab8115b0aa4d98c5f2547592544
-    m_Address: SkillDescription_ja-JP
+  - m_GUID: 47d92b856b882df4d8fa1f2fa4285120
+    m_Address: Passives_ja-JP
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ja-JP
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78eea6415c6171444a26e0d039b2d36a
-    m_Address: SkillName_ja-JP
+    m_Address: Skills_ja-JP
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ja-JP

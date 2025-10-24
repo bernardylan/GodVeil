@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60be79d46814bc6438523a781ba89837, type: 3}
   m_Name: RangerPassive
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
-  passiveName: 
-  description: 
+  icon: {fileID: 21300000, guid: b472febb03fb9da4fa13f656e6a0be3b, type: 3}
   effects: []
+  passiveNameKey: '#NULL'
+  passiveDescriptionKey: '#NULL'

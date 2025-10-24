@@ -27,14 +27,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ac098fc7d84f01f4cbbdbe3a7dbe1bc2
-    m_Address: SkillDescription_en
+  - m_GUID: b52f37c40e420aa42af622fd603e0198
+    m_Address: Skills_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b52f37c40e420aa42af622fd603e0198
-    m_Address: SkillName_en
+  - m_GUID: ec39f32be05aea3428411b98f2a80195
+    m_Address: Passives_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

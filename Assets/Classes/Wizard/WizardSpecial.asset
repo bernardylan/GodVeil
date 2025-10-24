@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be39b27a52d7c5242a27b373fe11e618, type: 3}
   m_Name: WizardSpecial
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4d84e10ff2e2ef74c87976b61511dc18, type: 3}
   skillType: 1
   element: 0
   skillNameKey: WIZARD_SPECIAL

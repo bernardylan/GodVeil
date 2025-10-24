@@ -8,7 +8,6 @@ public class ClassEvolutionManager : MonoBehaviour
     [SerializeField] private ClassData[] tier3Classes;
     [SerializeField] private ClassEvolutionUI[] panels;
 
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

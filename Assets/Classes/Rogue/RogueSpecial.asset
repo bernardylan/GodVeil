@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be39b27a52d7c5242a27b373fe11e618, type: 3}
   m_Name: RogueSpecial
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 39402881870cdb447b4ee5926d4ffe03, type: 3}
   skillType: 1
   element: 0
   skillNameKey: ROGUE_SPECIAL

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be39b27a52d7c5242a27b373fe11e618, type: 3}
   m_Name: VillagerUltimate
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 55997dcb6e93a8a4abb04d6c790ea43d, type: 3}
   skillType: 2
   element: 0
   skillNameKey: VILLAGER_ULTI

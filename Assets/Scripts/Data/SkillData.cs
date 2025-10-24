@@ -15,5 +15,4 @@ public class SkillData : ScriptableObject
     [Header("Stats")]
     public float cooldown;
     public float damageMultiplier;
-
 }

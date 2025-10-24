@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be39b27a52d7c5242a27b373fe11e618, type: 3}
   m_Name: RangerAutoAttack
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: d585e1db6f40ed6499e3fa31f359f606, type: 3}
   skillType: 0
   element: 0
   skillNameKey: RANGER_AUTO
