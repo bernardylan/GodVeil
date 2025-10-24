@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: RoguePassive
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
   passiveName: 
+  icon: {fileID: 0}
   description: 
   effects: []

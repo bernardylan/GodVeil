@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3168e047acb30ef43bad273f1751b788, type: 3}
   m_Name: WarriorData
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
-  className: Warrior
+  className: CLASS_WARRIOR
   classIcon: {fileID: 0}
   classPrefab: {fileID: 4175598672297225012, guid: 3a64c052593d00c40b0f432fa7caf698, type: 3}
   tier: 1

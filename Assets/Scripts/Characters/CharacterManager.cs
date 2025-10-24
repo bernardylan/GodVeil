@@ -31,6 +31,6 @@ public class CharacterManager : MonoBehaviour
         Debug.Log($"Initialized class : {classData.className}");
     }
 
-    public void EquipSkill(SkillData skill) => Debug.Log($"Equipped {skill.skillName}");
-    public void ApplyPassive(PassiveData passive) => Debug.Log($"Applied passive {passive.passiveName}");
+    public void EquipSkill(SkillData skill) => Debug.Log($"Equipped {skill.skillNameKey}");
+    public void ApplyPassive(PassiveData passive) => Debug.Log($"Applied passive {passive.passiveNameKey}");
 }

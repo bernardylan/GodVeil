@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3168e047acb30ef43bad273f1751b788, type: 3}
   m_Name: RogueData
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
-  className: Rogue
+  className: CLASS_ROGUE
   classIcon: {fileID: 0}
   classPrefab: {fileID: 7198852199442753240, guid: dd972d428aec5394c9d3341973b8efaf, type: 3}
   tier: 1

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be39b27a52d7c5242a27b373fe11e618, type: 3}
   m_Name: WizardUltimate
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName: 
   icon: {fileID: 0}
   skillType: 2
+  element: 0
+  skillNameKey: WIZARD_ULTI
+  skillDescriptionKey: WIZARD_ULTI_DESC
   cooldown: 0
   damageMultiplier: 0
-  element: 0
-  projectilePrefab: {fileID: 0}

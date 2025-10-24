@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3168e047acb30ef43bad273f1751b788, type: 3}
   m_Name: RangerData
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
-  className: Ranger
+  className: CLASS_RANGER
   classIcon: {fileID: 0}
   classPrefab: {fileID: 5124771186310826568, guid: a51a73a6a48f9034c835310272ee3889, type: 3}
   tier: 1

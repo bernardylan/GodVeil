@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3168e047acb30ef43bad273f1751b788, type: 3}
   m_Name: WizardData
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
-  className: Wizard
+  className: CLASS_WIZARD
   classIcon: {fileID: 0}
   classPrefab: {fileID: 4575578290734660153, guid: 6d1a7b1c1e5954648b61120a0ccd15bb, type: 3}
   tier: 1

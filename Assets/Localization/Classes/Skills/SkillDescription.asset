@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: SkillDescription
+  m_EditorClassIdentifier: Unity.Localization.Editor::UnityEditor.Localization.StringTableCollection
+  m_SharedTableData: {fileID: 11400000, guid: a05f308f4a8d93247a6521a48547ebbf, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: ac098fc7d84f01f4cbbdbe3a7dbe1bc2, type: 2}
+  - {fileID: 11400000, guid: d28ea59e0f95ca841b96e8e692935563, type: 2}
+  - {fileID: 11400000, guid: 1c186ab8115b0aa4d98c5f2547592544, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []
