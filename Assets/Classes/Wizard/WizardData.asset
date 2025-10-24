@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: Wizard
   classIcon: {fileID: 0}
-  animator: {fileID: 0}
-  rank: 1
+  classPrefab: {fileID: 4575578290734660153, guid: 6d1a7b1c1e5954648b61120a0ccd15bb, type: 3}
+  tier: 1
   isLocked: 0
-  baseStats: {fileID: 11400000, guid: 490eeaee28badf54c968add2a31f02be, type: 2}
-  autoAttack: {fileID: 11400000, guid: 7b129cdf49010e743b53f1b8f3a8f3e8, type: 2}
-  specialSkill: {fileID: 11400000, guid: 1466d90984fc72e47869d5a6370256b5, type: 2}
-  ultimateSkill: {fileID: 11400000, guid: 864f377a7d78eb747bb89225d6d0b460, type: 2}
-  passive: {fileID: 11400000, guid: f68156cce2f6ce644b850b299d3dd0e1, type: 2}
+  baseStats: {fileID: 11400000, guid: 8a7ac8a4b7194bf4e88def3f6ed97a13, type: 2}
+  autoAttack: {fileID: 11400000, guid: 76095cfc20ace904fba1b55d112843bf, type: 2}
+  specialSkill: {fileID: 11400000, guid: ace1bff6afbc01e4fa57c9a938c4cab1, type: 2}
+  ultimateSkill: {fileID: 11400000, guid: 9d5aadc982d91fb48bf9ae9cceb1828d, type: 2}
+  passive: {fileID: 11400000, guid: 48ca10c25d939a347a4f129ad7d34467, type: 2}

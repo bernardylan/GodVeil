@@ -3,10 +3,20 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager Instance { get; private set; }
-    private void Awake() => Instance = this;
 
     [SerializeField] private ClassData currentClass;
     [SerializeField] private CharacterStats currentStats;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
 
     private void Start()
     {

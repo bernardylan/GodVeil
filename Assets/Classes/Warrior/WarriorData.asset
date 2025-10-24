@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: Warrior
   classIcon: {fileID: 0}
-  animator: {fileID: 0}
-  rank: 1
+  classPrefab: {fileID: 4175598672297225012, guid: 3a64c052593d00c40b0f432fa7caf698, type: 3}
+  tier: 1
   isLocked: 0
   baseStats: {fileID: 11400000, guid: 490eeaee28badf54c968add2a31f02be, type: 2}
   autoAttack: {fileID: 11400000, guid: 7b129cdf49010e743b53f1b8f3a8f3e8, type: 2}

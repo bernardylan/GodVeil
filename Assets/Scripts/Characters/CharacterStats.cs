@@ -11,4 +11,5 @@ public class CharacterStats
             stats[s.type] = s.proficiency;
     }
     public int GetProficiency(StatType type) => stats.ContainsKey(type) ? stats[type] : 0;
+
 }

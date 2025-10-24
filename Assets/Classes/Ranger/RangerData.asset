@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: Ranger
   classIcon: {fileID: 0}
-  animator: {fileID: 0}
-  rank: 1
+  classPrefab: {fileID: 5124771186310826568, guid: a51a73a6a48f9034c835310272ee3889, type: 3}
+  tier: 1
   isLocked: 0
-  baseStats: {fileID: 11400000, guid: 490eeaee28badf54c968add2a31f02be, type: 2}
-  autoAttack: {fileID: 11400000, guid: 7b129cdf49010e743b53f1b8f3a8f3e8, type: 2}
-  specialSkill: {fileID: 11400000, guid: 1466d90984fc72e47869d5a6370256b5, type: 2}
-  ultimateSkill: {fileID: 11400000, guid: 864f377a7d78eb747bb89225d6d0b460, type: 2}
-  passive: {fileID: 11400000, guid: f68156cce2f6ce644b850b299d3dd0e1, type: 2}
+  baseStats: {fileID: 11400000, guid: 312a3dd9a92e749448afb31dce2259ee, type: 2}
+  autoAttack: {fileID: 11400000, guid: 82f5ef4593e926f4e8b36e06be65fe1f, type: 2}
+  specialSkill: {fileID: 11400000, guid: 203ed1ace53067b45b3ffdabded4b7be, type: 2}
+  ultimateSkill: {fileID: 11400000, guid: 1599eccbc67e1804ebff4100bfbcf4f3, type: 2}
+  passive: {fileID: 11400000, guid: 8d145843cd896c9419484cca141db77f, type: 2}

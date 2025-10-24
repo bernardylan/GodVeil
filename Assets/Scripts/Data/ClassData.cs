@@ -6,8 +6,8 @@ public class ClassData : ScriptableObject
     [Header("Base Info")]
     public string className;
     public Sprite classIcon;
-    public RuntimeAnimatorController animator;
-    public RankType rank;
+    public GameObject classPrefab;
+    public TierType tier;
     public bool isLocked = false;
 
     [Header("Base Stats")]
@@ -23,4 +23,4 @@ public class ClassData : ScriptableObject
 public enum StatType { Strength, Dexterity, Intelligence }
 public enum SkillType { AutoAttack, Special, Ultimate }
 public enum ElementType { None, Fire, Water, Earth, Lightning, Poison }
-public enum RankType { Rank0, Rank1, Rank2, Rank3 }
+public enum TierType { Tier0, Tier1, Tier2, Tier3 }
