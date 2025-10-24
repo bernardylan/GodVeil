@@ -23,11 +23,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 256321249280
-    m_Localized: Commencer
+    m_Localized: JOUER
     m_Metadata:
       m_Items: []
   - m_Id: 1017969106944
-    m_Localized: Continuer
+    m_Localized: CONTINUER
     m_Metadata:
       m_Items: []
   - m_Id: 26163011584
@@ -35,11 +35,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 350235910144
-    m_Localized: Options
+    m_Localized: OPTIONS
     m_Metadata:
       m_Items: []
   - m_Id: 425657884672
-    m_Localized: Quitter
+    m_Localized: QUITTER
     m_Metadata:
       m_Items: []
   references:
