@@ -1,10 +1,14 @@
+using Mono.Cecil.Cil;
 using System.Collections;
+using System.ComponentModel.Design;
 using UnityEngine;
 
 public class FadeInOut : MonoBehaviour
 {
     private Animator anim;          // Main text animation
     private Animator childAnim;     // Mirror text animation
+
+    [SerializeField] private GameObject mainMenuUI;
 
     // Main text strings
     [SerializeField] private string fadeOutAnim;
@@ -17,11 +21,19 @@ public class FadeInOut : MonoBehaviour
     // Caching for optimization
     private WaitForSeconds waitTime = new WaitForSeconds(1.5f);
 
+    private bool active = false;
+
     private Coroutine fadeInOutCo;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        if(mainMenuUI != null)
+            mainMenuUI.SetActive(false);
 
         foreach(Animator a in GetComponentsInChildren<Animator>(true)) // Removes main text Animator, ensures only the mirror text animator is called
         {
@@ -43,8 +55,9 @@ public class FadeInOut : MonoBehaviour
     // Stop all coroutines, plays fade out one last time before disabling both texts
     private void FadeOnButtonPress()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H) && active == true)
         {
+            active = false;
             if (fadeInOutCo != null)
                 StopCoroutine(fadeInOutCo);
 
@@ -64,11 +77,15 @@ public class FadeInOut : MonoBehaviour
         yield return waitTime;
 
         gameObject.SetActive(false);
+
+        if (mainMenuUI != null)
+            mainMenuUI.SetActive(true);
     }
 
     // Plays the animations as long as the texts exist (before pressing any key)
     private IEnumerator FadeInOutCo()
     {
+        active = true;
         while (true)
         {
             PlayBothAnimations(fadeOutAnim, lowAlphaOutAnim);
