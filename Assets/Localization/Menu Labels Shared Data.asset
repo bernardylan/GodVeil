@@ -39,6 +39,10 @@ MonoBehaviour:
     m_Key: mainMenu.exit
     m_Metadata:
       m_Items: []
+  - m_Id: 1084328791498752
+    m_Key: mainMenu.fullScreen
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
