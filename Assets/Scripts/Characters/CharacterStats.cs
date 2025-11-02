@@ -8,7 +8,10 @@ public class CharacterStats
     public CharacterStats(StatProfile profile)
     {
         foreach (var s in profile.stats)
-            stats[s.type] = s.proficiency;
+        {
+            float snapped = Mathf.Round(s.proficiency * 10f) / 10f;
+            stats[s.type] = snapped;
+        }
     }
     public float GetProficiency(StatType type) => stats.ContainsKey(type) ? stats[type] : 0;
 
