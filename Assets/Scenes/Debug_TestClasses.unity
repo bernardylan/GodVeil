@@ -422,7 +422,7 @@ MonoBehaviour:
   proficiencyText: {fileID: 1674623467}
   skillContainer: {fileID: 194673547}
   skillIconPrefab: {fileID: 536692372208078864, guid: 1cfe63d8d15c7e548bd163731186397a, type: 3}
-  charaPrefab: {fileID: 536692372208078864, guid: 1cfe63d8d15c7e548bd163731186397a, type: 3}
+  charaPrefab: {fileID: 631619639286757534, guid: 772295937043ebd438be32a76480a9f5, type: 3}
   selectButton: {fileID: 1964652250}
   characterSlot: {fileID: 1407275594}
 --- !u!1 &194673546
@@ -2643,7 +2643,7 @@ MonoBehaviour:
   proficiencyText: {fileID: 574234498}
   skillContainer: {fileID: 602476815}
   skillIconPrefab: {fileID: 536692372208078864, guid: 1cfe63d8d15c7e548bd163731186397a, type: 3}
-  charaPrefab: {fileID: 536692372208078864, guid: 1cfe63d8d15c7e548bd163731186397a, type: 3}
+  charaPrefab: {fileID: 631619639286757534, guid: 772295937043ebd438be32a76480a9f5, type: 3}
   selectButton: {fileID: 1918700985}
   characterSlot: {fileID: 436911319}
 --- !u!1 &1538212613
@@ -2744,7 +2744,7 @@ MonoBehaviour:
   proficiencyText: {fileID: 413519598}
   skillContainer: {fileID: 1970597263}
   skillIconPrefab: {fileID: 536692372208078864, guid: 1cfe63d8d15c7e548bd163731186397a, type: 3}
-  charaPrefab: {fileID: 536692372208078864, guid: 1cfe63d8d15c7e548bd163731186397a, type: 3}
+  charaPrefab: {fileID: 631619639286757534, guid: 772295937043ebd438be32a76480a9f5, type: 3}
   selectButton: {fileID: 1018008409}
   characterSlot: {fileID: 43070048}
 --- !u!1 &1656755522
