@@ -1,18 +1,44 @@
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿[System.Serializable]
 public class CharacterStats
 {
-    public Dictionary<StatType, float> stats = new();
+    public ClassData CurrentClass;
+    public WeaponData EquippedWeapon;
+    public float CurrentHP;
+    public float CurrentEnergy;
+    public bool IsLocked;
+    public int Level;
 
-    public CharacterStats(StatProfile profile)
+    public DerivedStats Derived;
+
+    // Coefficients de scaling (modifiable si besoin)
+    private const float HPScaling      = 0.5f;  // STR boost MaxHP
+    private const float DefenseScaling = 2f;    // STR boost Defense
+    private const float CritScaling    = 3f;    // DEX boost CritRate
+    private const float DodgeScaling   = 3f;    // DEX boost Dodge
+    private const float HitScaling     = 0.2f;  // INT boost HitChance
+    private const float EnergyScaling  = 0.5f;  // INT boost EnergyRegen
+
+    public CharacterStats(ClassData classData, WeaponData weapon = null)
     {
-        foreach (var s in profile.stats)
-        {
-            float snapped = Mathf.Round(s.proficiency * 10f) / 10f;
-            stats[s.type] = snapped;
-        }
+        CurrentClass = classData;
+        EquippedWeapon = weapon;
+        RecalculateDerivedStats();
+        CurrentHP = Derived.MaxHP;
+        CurrentEnergy = Derived.EnergyRegen;
     }
-    public float GetProficiency(StatType type) => stats.ContainsKey(type) ? stats[type] : 0;
 
+    public void RecalculateDerivedStats()
+    {
+        // Ton calcul des stats à partir du classData + weapon
+        var baseStats = CurrentClass.baseStats;
+        Derived = new DerivedStats
+        {
+            MaxHP = CurrentClass.baseHP * HPScaling * (1 + baseStats.stats[0].proficiency),
+            Defense = CurrentClass.baseDefense * DefenseScaling * baseStats.stats[0].proficiency,
+            CritRate = CurrentClass.baseCritRate * CritScaling * baseStats.stats[1].proficiency,
+            Dodge = CurrentClass.baseDodge * DodgeScaling * baseStats.stats[1].proficiency,
+            HitChance = CurrentClass.baseHitChance * HitScaling * baseStats.stats[2].proficiency,
+            EnergyRegen = CurrentClass.baseEnergyRegen * EnergyScaling * baseStats.stats[2].proficiency
+        };
+    }
 }

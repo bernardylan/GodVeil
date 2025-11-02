@@ -1,36 +1,82 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager Instance { get; private set; }
 
-    [SerializeField] private ClassData currentClass;
-    [SerializeField] private CharacterStats currentStats;
-    
+    [Header("Liste de personnages")]
+    [SerializeField] private List<CharacterStats> characters = new();
+    public IReadOnlyList<CharacterStats> Characters => characters;
+
+    [Header("Max personnages")]
+    [SerializeField] private int maxCharacters = 4;
+
+    [Header("Classes T0 disponibles")]
+    [SerializeField] private List<ClassData> defaultT0Classes = new(); // Villager1..4
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            if (characters.Count == 0)
+            {
+                // Création automatique de personnages T0
+                foreach (var t0 in defaultT0Classes)
+                    AddCharacter(t0);
+            }
         }
-        else
-            Destroy(gameObject);
+        else Destroy(gameObject);
     }
 
-    private void Start()
+    public CharacterStats AddCharacter(ClassData classData, WeaponData weapon = null)
     {
-        InitializeCharacter(currentClass);
+        if (characters.Count >= maxCharacters)
+        {
+            Debug.LogWarning("[CharacterManager] Nombre maximum de personnages atteint");
+            return null;
+        }
+
+        CharacterStats newChar = new CharacterStats(classData, weapon);
+        characters.Add(newChar);
+
+        Debug.Log($"[CharacterManager] Nouveau personnage ajouté : {classData.className}");
+        return newChar;
     }
 
-    public void InitializeCharacter(ClassData classData)
+    public void RecalculateAllCharacters()
     {
-        currentClass = classData;
-        currentStats = new CharacterStats(classData.baseStats);
-
-        Debug.Log($"Initialized class : {classData.className}");
+        foreach (var c in characters)
+            c.RecalculateDerivedStats();
     }
 
-    public void EquipSkill(SkillData skill) => Debug.Log($"Equipped {skill.skillNameKey}");
-    public void ApplyPassive(PassiveData passive) => Debug.Log($"Applied passive {passive.passiveNameKey}");
+    public void EvolveCharacter(int slotIndex, ClassData newClass)
+    {
+        if (slotIndex < 0 || slotIndex >= characters.Count)
+        {
+            Debug.LogWarning("Slot invalide !");
+            return;
+        }
+
+        CharacterStats chara = characters[slotIndex];
+        float oldHPPercent = chara.CurrentHP / chara.Derived.MaxHP; // On garde le ratio de HP
+        chara.CurrentClass = newClass;
+        chara.RecalculateDerivedStats();
+        chara.CurrentHP = chara.Derived.MaxHP * oldHPPercent;
+
+        Debug.Log($"[CharacterManager] {slotIndex} évolue en {newClass.className}");
+    }
+
+    [ContextMenu("Debug Character Slots")]
+    private void DebugCharacterSlots()
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            var c = characters[i];
+            Debug.Log($"Slot {i + 1}: {c.CurrentClass.className} | HP: {c.CurrentHP}/{c.Derived.MaxHP} | Weapon: {(c.EquippedWeapon ? c.EquippedWeapon.weaponName : "None")}");
+        }
+    }
+
 }

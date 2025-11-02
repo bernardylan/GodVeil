@@ -11,18 +11,32 @@ public class ClassEvolutionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI proficiencyText;
     [SerializeField] private Transform skillContainer;
     [SerializeField] private GameObject skillIconPrefab;
+    [SerializeField] private GameObject charaPrefab;
     [SerializeField] private Button selectButton;
+    [SerializeField] private Transform characterSlot;
 
     private ClassData currentClass;
     private Action<ClassData> onSelect;
+
+    private void Clear(Transform parent)
+    {
+        foreach (Transform t in parent)
+            Destroy(t.gameObject);
+    }
 
     public void Initialize(ClassData classData, Action<ClassData> onSelectCallback)
     {
         currentClass = classData;
         onSelect = onSelectCallback;
+        Clear(characterSlot);
+        Clear(skillContainer);
 
         // classe name
         classNameText.text = LocalizationManager.GetLocalizedString(classData.className, "ClassNames");
+
+        GameObject go = Instantiate(charaPrefab, characterSlot);
+        Image icon = go.GetComponent<Image>();
+        icon.sprite = classData.classIcon;
 
         // Proficiencies
         proficiencyText.text = "";
@@ -30,9 +44,6 @@ public class ClassEvolutionUI : MonoBehaviour
         {
             proficiencyText.text += $"{s.type}: {s.proficiency}\n";
         }
-
-        // Clear previous icons
-        foreach (Transform t in skillContainer) Destroy(t.gameObject);
 
         // add passive
         if (classData.passive != null)
