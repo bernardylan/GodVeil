@@ -21,7 +21,7 @@ public class ClassEvolutionUI : MonoBehaviour
         currentClass = classData;
         onSelect = onSelectCallback;
 
-        // Nom de la classe
+        // classe name
         classNameText.text = LocalizationManager.GetLocalizedString(classData.className, "ClassNames");
 
         // Proficiencies
@@ -34,7 +34,7 @@ public class ClassEvolutionUI : MonoBehaviour
         // Clear previous icons
         foreach (Transform t in skillContainer) Destroy(t.gameObject);
 
-        // Ajout passif comme skill (si existant)
+        // add passive
         if (classData.passive != null)
         {
             AddSkillOrPassiveIcon(
@@ -45,7 +45,7 @@ public class ClassEvolutionUI : MonoBehaviour
             );
         }
 
-        // Ajout des skills
+        // add skills
         SkillData[] skills = { classData.autoAttack, classData.specialSkill, classData.ultimateSkill };
         foreach (var skill in skills)
         {
@@ -59,7 +59,7 @@ public class ClassEvolutionUI : MonoBehaviour
             );
         }
 
-        // Bouton de sélection
+        // Select button
         selectButton.onClick.RemoveAllListeners();
         selectButton.onClick.AddListener(() => onSelect?.Invoke(currentClass));
     }
@@ -73,7 +73,7 @@ public class ClassEvolutionUI : MonoBehaviour
         EventTrigger trigger = go.GetComponent<EventTrigger>();
         if (!trigger) trigger = go.AddComponent<EventTrigger>();
 
-        // PointerEnter -> affiche tooltip
+        // PointerEnter -> show tooltip
         var entryEnter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
         entryEnter.callback.AddListener((e) =>
         {
@@ -83,7 +83,7 @@ public class ClassEvolutionUI : MonoBehaviour
         });
         trigger.triggers.Add(entryEnter);
 
-        // PointerExit -> cache tooltip
+        // PointerExit -> hide tooltip
         var entryExit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
         entryExit.callback.AddListener((e) => TooltipManager.Instance.Hide());
         trigger.triggers.Add(entryExit);

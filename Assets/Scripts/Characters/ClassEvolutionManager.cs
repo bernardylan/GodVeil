@@ -8,8 +8,11 @@ public class ClassEvolutionManager : MonoBehaviour
     [SerializeField] private ClassData[] tier3Classes;
     [SerializeField] private ClassEvolutionUI[] panels;
 
+    private GameObject currentInstance;
+
     private void Update()
     {
+        //debug
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ShowEvolutionsOptions();
@@ -28,6 +31,19 @@ public class ClassEvolutionManager : MonoBehaviour
     {
         CharacterManager.Instance.InitializeCharacter(selectedClass);
         Debug.Log($"Selected class: {selectedClass.className}");
+
+        if (currentInstance != null)
+            Destroy(currentInstance);
+
+        if (selectedClass.classPrefab != null)
+        {
+            currentInstance = Instantiate(selectedClass.classPrefab);
+            currentInstance.name = selectedClass.className;
+        }
+        else
+        {
+            Debug.LogWarning($"No prefab assigned for class {selectedClass.className}");
+        }
     }
 
     private static ClassData[] GetRandomClasses(ClassData[] available, int count)
