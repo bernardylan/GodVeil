@@ -5,15 +5,12 @@ public class FullScreenToggle : MonoBehaviour
 {
     [Header("Full Screen")]
     private Toggle fullscreenToggle;
-    [SerializeField] private bool isFullscreen;
-
-    [Header("Resolutions")]
-    Resolution[] AllResolutions;
-    [SerializeField] int selectedResolution;
+    [SerializeField] private bool isFullscreen = true;
 
     private void Start()
     {
-        isFullscreen = true;
+        fullscreenToggle = GetComponent<Toggle>();
+        fullscreenToggle.isOn = Screen.fullScreen;
     }
 
     public void ChangeFullScreen()
