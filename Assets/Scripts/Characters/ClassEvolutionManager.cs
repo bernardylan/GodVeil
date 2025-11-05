@@ -8,15 +8,14 @@ public class ClassEvolutionManager : MonoBehaviour
     [SerializeField] private ClassData[] tier3Classes;
     [SerializeField] private ClassEvolutionUI[] panels;
 
-    [Header("Slot ciblé pour l’évolution (0–3)")]
-    [SerializeField] private int currentSlotIndex = 0;
+    private int currentSlotIndex = 0;
 
     private void Update()
     {
         //debug
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Choisir un personnage actif aléatoire
+            // Randomly choose a character to evolve
             int randomSlot = Random.Range(0, CharacterManager.Instance.Characters.Count);
             SetTargetSlot(randomSlot);
 
@@ -40,7 +39,6 @@ public class ClassEvolutionManager : MonoBehaviour
     private void OnClassSelected(ClassData selectedClass)
     {
         CharacterManager.Instance.EvolveCharacter(currentSlotIndex, selectedClass);
-        Debug.Log($"Slot {currentSlotIndex} évolue en {selectedClass.className}");
     }
 
     private static ClassData[] GetRandomClasses(ClassData[] available, int count)

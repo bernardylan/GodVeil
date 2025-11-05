@@ -10,7 +10,7 @@ public class CharacterStats
 
     public DerivedStats Derived;
 
-    // Coefficients de scaling (modifiable si besoin)
+    // scaling coeff.
     private const float HPScaling      = 0.5f;  // STR boost MaxHP
     private const float DefenseScaling = 2f;    // STR boost Defense
     private const float CritScaling    = 3f;    // DEX boost CritRate
@@ -29,7 +29,7 @@ public class CharacterStats
 
     public void RecalculateDerivedStats()
     {
-        // Ton calcul des stats à partir du classData + weapon
+        // Calculate damage from classData
         var baseStats = CurrentClass.baseStats;
         Derived = new DerivedStats
         {
