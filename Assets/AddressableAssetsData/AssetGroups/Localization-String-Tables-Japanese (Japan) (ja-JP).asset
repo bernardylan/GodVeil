@@ -21,6 +21,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ja-JP
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47d92b856b882df4d8fa1f2fa4285120
+    m_Address: Passives_ja-JP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja-JP
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78eea6415c6171444a26e0d039b2d36a
+    m_Address: Skills_ja-JP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja-JP
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f6ec75b7ddb7ba4993019ef048a0239
+    m_Address: ClassNames_ja-JP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja-JP
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 2f06199b8c4252c4897bd2ceea7744f0, type: 2}
   m_SchemaSet:

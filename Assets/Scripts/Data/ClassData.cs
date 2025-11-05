@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "GodVeil/Class Data")]
 public class ClassData : ScriptableObject
@@ -6,12 +6,18 @@ public class ClassData : ScriptableObject
     [Header("Base Info")]
     public string className;
     public Sprite classIcon;
-    public RuntimeAnimatorController animator;
-    public RankType rank;
+    public GameObject classPrefab;
+    public TierType tier;
     public bool isLocked = false;
 
     [Header("Base Stats")]
-    public StatProfile baseStats; // Stock stats FOR/DEX/INT....
+    public StatProfile baseStats; // Stock stats
+    public float baseHP = 500f;
+    public float baseDefense = 0.05f;
+    public float baseCritRate = 0.05f;
+    public float baseDodge = 0.05f;
+    public float baseHitChance = 0.85f;
+    public float baseEnergyRegen = 1f;
 
     [Header("Links")]
     public SkillData autoAttack;
@@ -20,7 +26,38 @@ public class ClassData : ScriptableObject
     public PassiveData passive;
 }
 
-public enum StatType { Strength, Dexterity, Intelligence }
+public enum StatType 
+{
+    Strength,   // Phys dmg + HP/Def via End scaling
+    Dexterity,  // Crit rate + Dodge
+    Intelligence, // Magic dmg + Hit chance + Focus regen
+    Speed      // Action speed (ATB/Turn speed)
+}
+
+[System.Serializable]
+public struct DerivedStats
+{
+    public float BaseHP;
+    public float MaxHP;
+    public float Defense;
+    public float CritRate;
+    public float Dodge;
+    public float HitChance;
+    public float EnergyRegen;
+}
+
 public enum SkillType { AutoAttack, Special, Ultimate }
 public enum ElementType { None, Fire, Water, Earth, Lightning, Poison }
-public enum RankType { Rank0, Rank1, Rank2, Rank3 }
+
+public enum TierType { T0, T1, T2, T3 }
+public static class TierUtility
+{
+    public static float GetMultiplier(TierType tier) => tier switch
+    {
+        TierType.T0 => 0.75f,
+        TierType.T1 => 1f,
+        TierType.T2 => 1.5f,
+        TierType.T3 => 2f,
+        _ => 1f
+    };
+}

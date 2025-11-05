@@ -1,6 +1,4 @@
-using Mono.Cecil.Cil;
 using System.Collections;
-using System.ComponentModel.Design;
 using UnityEngine;
 
 public class FadeInOut : MonoBehaviour
