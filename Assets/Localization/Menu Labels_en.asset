@@ -42,6 +42,10 @@ MonoBehaviour:
     m_Localized: Press any key to start
     m_Metadata:
       m_Items: []
+  - m_Id: 1084328791498752
+    m_Localized: Full Screen
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
