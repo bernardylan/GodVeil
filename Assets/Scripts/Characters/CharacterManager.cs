@@ -23,7 +23,7 @@ public class CharacterManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             if (characters.Count == 0)
             {
-                // Création automatique de personnages T0
+                // Auto creation of T0 when run start
                 foreach (var t0 in defaultT0Classes)
                     AddCharacter(t0);
             }
@@ -35,14 +35,14 @@ public class CharacterManager : MonoBehaviour
     {
         if (characters.Count >= maxCharacters)
         {
-            Debug.LogWarning("[CharacterManager] Nombre maximum de personnages atteint");
+            Debug.LogWarning("[CharacterManager] Maximum nb of characters have been reached");
             return null;
         }
 
         CharacterStats newChar = new CharacterStats(classData, weapon);
         characters.Add(newChar);
 
-        Debug.Log($"[CharacterManager] Nouveau personnage ajouté : {classData.className}");
+        Debug.Log($"[CharacterManager] New character added : {classData.className}");
         return newChar;
     }
 
@@ -56,17 +56,17 @@ public class CharacterManager : MonoBehaviour
     {
         if (slotIndex < 0 || slotIndex >= characters.Count)
         {
-            Debug.LogWarning("Slot invalide !");
+            Debug.LogWarning("Slot null");
             return;
         }
 
         CharacterStats chara = characters[slotIndex];
-        float oldHPPercent = chara.CurrentHP / chara.Derived.MaxHP; // On garde le ratio de HP
+        float oldHPPercent = chara.CurrentHP / chara.Derived.MaxHP; //HP ratio
         chara.CurrentClass = newClass;
         chara.RecalculateDerivedStats();
         chara.CurrentHP = chara.Derived.MaxHP * oldHPPercent;
 
-        Debug.Log($"[CharacterManager] {slotIndex} évolue en {newClass.className}");
+        Debug.Log($"[CharacterManager] {slotIndex} evolve to {newClass.className}");
     }
 
     [ContextMenu("Debug Character Slots")]

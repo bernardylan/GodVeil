@@ -42,7 +42,7 @@ public class ClassEvolutionUI : MonoBehaviour
         proficiencyText.text = "";
         foreach (var s in classData.baseStats.stats)
         {
-            proficiencyText.text += $"{s.type}: {s.proficiency}\n";
+            proficiencyText.text += $"{s.type}: {ProficiencyUtility.GetLetterGrade(s.proficiency)}\n";
         }
 
         // add passive

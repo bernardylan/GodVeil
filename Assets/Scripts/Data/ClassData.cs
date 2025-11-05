@@ -37,8 +37,8 @@ public enum StatType
 [System.Serializable]
 public struct DerivedStats
 {
-    public float BaseHP;       // Valeur "à la main" dans SO
-    public float MaxHP;        // Calculé via BaseHP + STR scaling
+    public float BaseHP;
+    public float MaxHP;
     public float Defense;
     public float CritRate;
     public float Dodge;

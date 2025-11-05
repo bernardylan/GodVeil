@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WizardData
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: CLASS_WIZARD
-  classIcon: {fileID: -7916167863619566805, guid: d779a6cec94905d4a9d8054522440059, type: 3}
+  classIcon: {fileID: 21300000, guid: 265620f681f3e1d4a8343f84ecd9df66, type: 3}
   classPrefab: {fileID: 0}
   tier: 1
   isLocked: 0

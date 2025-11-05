@@ -8,8 +8,8 @@ public class PassiveData : ScriptableObject
     public PassiveEffect[] effects;
 
     [Header("Localization Keys")]
-    public string passiveNameKey;        // ex: "Villager_Passive_Name"
-    public string passiveDescriptionKey;
+    public string passiveNameKey; // ex: "Villager_passive_Name"
+    public string passiveDescriptionKey;// ex: "Villager_passive_Desc"
 }
 
 [System.Serializable]
