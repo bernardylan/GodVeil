@@ -55,7 +55,7 @@ public class FadeInOut : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H) && active == true)
         {
-            //SoundManager.Instance.PlaySFX("FirstScreen");
+            SoundManager.Instance.PlaySFX("FirstScreen");
 
             active = false;
             if (fadeInOutCo != null)
@@ -68,7 +68,6 @@ public class FadeInOut : MonoBehaviour
                 childAnim.Play(lowAlphaOutAnim, 0, 0f);
 
             StartCoroutine(DisableAfterFadeCo());
-            SoundManager.Instance.PlayMusicWithFade("MainMenuTheme");
         }
     }
 
@@ -81,6 +80,7 @@ public class FadeInOut : MonoBehaviour
 
         if (mainMenuUI != null)
             mainMenuUI.SetActive(true);
+        SoundManager.Instance.PlayMusicWithFade("MainMenuTheme", 6f);
     }
 
     // Plays the animations as long as the texts exist (before pressing any key)
