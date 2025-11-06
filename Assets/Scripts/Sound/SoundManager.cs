@@ -56,6 +56,11 @@ public class SoundManager : MonoBehaviour
     // RELATED TO MUSICS
     //==================
 
+    //Mute or unmute the music source
+    public void ToggleMusic() => musicSource.mute = !musicSource.mute;
+
+    public void MusicVolume(float volume) => musicSource.volume = volume;
+
     // Play music without any effects(fade etc.)
     public void PlayMusic(string name) => PlaySound(musicSounds, musicSource, name);
 
@@ -105,6 +110,11 @@ public class SoundManager : MonoBehaviour
     //=========================
     // RELATED TO SOUND EFFECTS
     //=========================
+
+    // Mute or unmute the SFX source
+    public void ToggleSFX() => sfxSource.mute = !sfxSource.mute;
+
+    public void SFXVolume(float volume) => sfxSource.volume = volume;
 
     // Play sounds for the SFX source
     public void PlaySFX(string name, float pitch = 1f)
