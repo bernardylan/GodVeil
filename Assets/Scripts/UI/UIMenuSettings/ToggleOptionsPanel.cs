@@ -23,6 +23,7 @@ public class ToggleOptionsPanel : MonoBehaviour
         if (optionsPanel != null)
         {
             optionsPanel.SetActive(true);
+            SoundManager.Instance.PlaySFX("Open/Accept");
             
             if(mainMenuCanvasGroup != null)
             {
@@ -37,6 +38,7 @@ public class ToggleOptionsPanel : MonoBehaviour
         if (optionsPanel != null)
         {
             optionsPanel.SetActive(false);
+            SoundManager.Instance.PlaySFX("Close/Refuse");
 
             if (mainMenuCanvasGroup != null)
             {
