@@ -56,7 +56,6 @@ public class HpComponent : MonoBehaviour, IHasHp
     public float GetHPPercent() => maxHP <= 0f ? 0f : currentHP / maxHP;
 }
 
-
 public readonly struct DamageInfo
 {
     public readonly float Amount;

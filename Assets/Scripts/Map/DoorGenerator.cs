@@ -1,51 +1,42 @@
-using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorGenerator : MonoBehaviour
 {
-    [Header("Doors configs")]
-    public List<GameObject> allDoorsPrefabs;
+    [Header("Config")]
+    public DoorConfig doorConfig;
     public List<Transform> spawnPositions;
     public int numberOfDoors = 2;
 
-    private List<GameObject> currentDoors = new List<GameObject>();
+    private List<GameObject> currentDoors = new();
 
     private void Start()
     {
-        SpawnDoors();
+        SpawnDoors(isFirstRoom: true);
     }
 
-    public void SpawnDoors()
+    public void SpawnDoors(bool isFirstRoom)
     {
-        currentDoors.Clear();
-
+        ClearDoors();
         int doorsToSpawn = Mathf.Min(numberOfDoors, spawnPositions.Count);
-
-        List<GameObject> availableDoors = new List<GameObject>(allDoorsPrefabs);
+        List<DoorType> excluded = new();
 
         for (int i = 0; i < doorsToSpawn; i++)
         {
-            if (availableDoors.Count == 0) break;
+            DoorData data = doorConfig.GetRandomDoor(isFirstRoom, excluded);
+            excluded.Add(data.type);
 
-            int index = Random.Range(0, availableDoors.Count);
-            GameObject chosenDoor = Instantiate(availableDoors[index], spawnPositions[i].position, spawnPositions[i].rotation);
-
-            chosenDoor.transform.SetParent(this.transform);
-
-            currentDoors.Add(chosenDoor);
-            availableDoors.RemoveAt(index);
+            GameObject go = Instantiate(data.prefab, spawnPositions[i].position, spawnPositions[i].rotation);
+            go.transform.SetParent(transform);
+            currentDoors.Add(go);
         }
     }
 
     public void ClearDoors()
     {
-        foreach(var door in currentDoors)
-        {
-            if (door != null)
-                Destroy(door);
-        }
+        foreach (var door in currentDoors)
+            if (door != null) Destroy(door);
+
         currentDoors.Clear();
     }
-
 }

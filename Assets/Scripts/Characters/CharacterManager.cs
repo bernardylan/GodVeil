@@ -5,14 +5,14 @@ public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager Instance { get; private set; }
 
-    [Header("Liste de personnages")]
+    [Header("Characters List")]
     [SerializeField] private List<CharacterStats> characters = new();
     public IReadOnlyList<CharacterStats> Characters => characters;
 
-    [Header("Max personnages")]
+    [Header("Max Characters")]
     [SerializeField] private int maxCharacters = 4;
 
-    [Header("Classes T0 disponibles")]
+    [Header("Classes T0 available")]
     [SerializeField] private List<ClassData> defaultT0Classes = new(); // Villager1..4
 
     private void Awake()
