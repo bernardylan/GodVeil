@@ -6,9 +6,9 @@ public class CameraMapSettings : MonoBehaviour
 
     [Header("FOV")]
     private bool isZooming = false;
-    private float startFov = 85f;
-    private float targetFov = 35f;
-    private float duration = 1.5f; // transition time
+    public float startFov = 85f;
+    public float targetFov = 35f;
+    public float duration = 1.5f; // transition time
     private float t = 0f;
 
     [Header("Headbob")]
