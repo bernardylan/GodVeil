@@ -40,7 +40,7 @@ public class ClassEvolutionUI : MonoBehaviour
 
         // Proficiencies
         proficiencyText.text = "";
-        foreach (var s in classData.baseStats.stats)
+        foreach (var s in classData.proficiencies.stats)
         {
             proficiencyText.text += $"{s.type}: {ProficiencyUtility.GetLetterGrade(s.proficiency)}\n";
         }

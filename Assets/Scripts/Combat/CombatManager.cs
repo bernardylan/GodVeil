@@ -1,33 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.TextCore.Text;
 
 public class CombatManager : MonoBehaviour
 {
+    public static CombatManager Instance;
+
+    [Header("Spawn Points")]
     [SerializeField] private List<Transform> playerSpawnPositions;
     [SerializeField] private Transform[] enemySpawnPositions;
 
+    [Header("Enemy Pool")]
     [SerializeField] private List<EnemyData> enemyPool = new();
 
+    [Header("UI")]
+    //[SerializeField] private CombatUIManager uiManager;
+
+    [Header("Units")]
     public List<PlayerUnit> playerUnits = new();
     public List<EnemyUnit> enemyUnits = new();
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+    }
 
     private void Start()
     {
         SpawnPlayerUnits();
         SpawnEnemyUnits(2);
+
+        //uiManager.Initialize(playerUnits);
     }
 
     private void SpawnPlayerUnits()
     {
-        var characters = CharacterManager.Instance.Characters;
-        for (int i = 0; i < characters.Count; i++)
+        var chars = CharacterManager.Instance.Characters;
+        for (int i = 0; i < chars.Count; i++)
         {
-            var prefab = characters[i].CurrentClass.classPrefab;
-            var unitGO = Instantiate(prefab, playerSpawnPositions[i].position, Quaternion.identity);
-            var playerUnit = unitGO.GetComponent<PlayerUnit>();
-            playerUnit.Initialize(characters[i]);
-            playerUnit.OnPerformSkill += HandleSkill;
-            playerUnits.Add(playerUnit);
+            var prefab = chars[i].CurrentClass.classPrefab;
+            var spawn = playerSpawnPositions[i];
+            var obj = Instantiate(prefab, spawn.position, Quaternion.identity);
+
+            var unit = obj.GetComponent<PlayerUnit>();
+            unit.Initialize(chars[i]);
+
+            playerUnits.Add(unit);
         }
     }
 
@@ -36,27 +59,14 @@ public class CombatManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             if (enemyPool.Count == 0) break;
-
             var data = enemyPool[Random.Range(0, enemyPool.Count)];
             var spawn = enemySpawnPositions[i % enemySpawnPositions.Length];
-            var unitGO = Instantiate(data.prefab, spawn.position, spawn.rotation);
-            var enemyUnit = unitGO.GetComponent<EnemyUnit>();
-            enemyUnit.Initialize(data);
-            enemyUnit.OnPerformSkill += HandleSkill;
-            enemyUnits.Add(enemyUnit);
+
+            var obj = Instantiate(data.prefab, spawn.position, spawn.rotation);
+            var enemy = obj.GetComponent<EnemyUnit>();
+            enemy.Initialize(data);
+
+            enemyUnits.Add(enemy);
         }
-    }
-
-    private void HandleSkill(CombatUnit user, SkillData skill)
-    {
-        List<CombatUnit> targets = user.isEnemy ? new List<CombatUnit>(playerUnits) : new List<CombatUnit>(enemyUnits);
-        targets.RemoveAll(u => u.GetComponent<HpComponent>().HP <= 0f);
-        if (targets.Count == 0) return;
-
-        var target = targets[Random.Range(0, targets.Count)];
-        float dmg = skill != null ? skill.damageMultiplier : 10f;
-        target.GetComponent<HpComponent>().TakeDamage(new DamageInfo(dmg, user.gameObject));
-
-        user.GainEnergy(20f);
     }
 }

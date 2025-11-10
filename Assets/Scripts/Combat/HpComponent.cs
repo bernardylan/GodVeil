@@ -5,9 +5,9 @@ using System;
 public class HpComponent : MonoBehaviour, IHasHp
 {
     [SerializeField] private int teamID = 0;
-    [Range(0f, 0.95f)][SerializeField] private float mitigation = 0f;
+    [Range(0f, 0.95f)][SerializeField] public float mitigation = 0f;
 
-    private float currentHP;
+    public float currentHP;
     private float maxHP;
 
     public float HP => currentHP;
@@ -33,7 +33,6 @@ public class HpComponent : MonoBehaviour, IHasHp
         this.teamID = team;
         OnHPChanged?.Invoke(currentHP);
     }
-
 
     public float TakeDamage(in DamageInfo dmg)
     {

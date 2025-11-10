@@ -17,13 +17,14 @@ MonoBehaviour:
   classPrefab: {fileID: 0}
   tier: 1
   isLocked: 0
-  baseStats: {fileID: 11400000, guid: 490eeaee28badf54c968add2a31f02be, type: 2}
   baseHP: 500
   baseDefense: 0.05
   baseCritRate: 0.05
   baseDodge: 0.05
   baseHitChance: 0.85
   baseEnergyRegen: 1
+  baseSpeed: 1
+  proficiencies: {fileID: 11400000, guid: 490eeaee28badf54c968add2a31f02be, type: 2}
   autoAttack: {fileID: 11400000, guid: 7b129cdf49010e743b53f1b8f3a8f3e8, type: 2}
   specialSkill: {fileID: 11400000, guid: 1466d90984fc72e47869d5a6370256b5, type: 2}
   ultimateSkill: {fileID: 11400000, guid: 864f377a7d78eb747bb89225d6d0b460, type: 2}

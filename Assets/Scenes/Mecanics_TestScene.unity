@@ -2427,6 +2427,7 @@ MonoBehaviour:
   enemyPool:
   - {fileID: 11400000, guid: 0ba551db25f9f394ebbb5a0842645066, type: 2}
   - {fileID: 11400000, guid: 0421532f64748964592bfddb7faeb279, type: 2}
+  uiManager: {fileID: 0}
   playerUnits: []
   enemyUnits: []
 --- !u!4 &853761254

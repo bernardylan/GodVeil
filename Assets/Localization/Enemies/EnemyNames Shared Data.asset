@@ -16,11 +16,15 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 71a22a439973da14c81cef5f3d7115f0
   m_Entries:
   - m_Id: 9707671552
-    m_Key: ENEMY_BLACKANT_KNIGHT
+    m_Key: MINION_BLACKANT_KNIGHT
     m_Metadata:
       m_Items: []
   - m_Id: 127324344320
-    m_Key: ENEMY_BLACKANT_ARCHER
+    m_Key: MINION_BLACKANT_ARCHER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45395382063104
+    m_Key: BOSS_ZEOGRATH
     m_Metadata:
       m_Items: []
   m_Metadata:

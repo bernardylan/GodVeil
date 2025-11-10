@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5576dc1251942f74e89a59ab4004753a, type: 3}
+  m_Name: Zeograth
+  m_EditorClassIdentifier: Assembly-CSharp::BossData
+  enemyNameKey: BOSS_ZEOGRATH
+  icon: {fileID: -6891516568486176211, guid: b7c46ba2a659c6f46b948cb5ac5d34d3, type: 3}
+  prefab: {fileID: 6601177852687549726, guid: 04005d22c9322e645a3905623398569f, type: 3}
+  enemyType: 2
+  maxHP: 100
+  attack: 20
+  defense: 10
+  speed: 1
+  critChance: 0.1
+  critMultiplier: 1.5
+  autoAttack: {fileID: 0}
+  specialSkill: {fileID: 0}
+  ultimateSkill: {fileID: 0}
+  ultimateUsageThreshold: 1
+  specialUsageChance: 0.3
+  phase2Threshold: 0.5
+  phase3Threshold: 0.2
+  phase2SpecialChance: 0.5
+  phase3SpecialChance: 0.7
+  ultimateUsageChance: 0.8

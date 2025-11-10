@@ -17,5 +17,8 @@ MonoBehaviour:
   element: 0
   skillNameKey: VILLAGER_AUTO
   skillDescriptionKey: VILLAGER_AUTO_DESC
-  cooldown: 1
-  damageMultiplier: 1
+  Buffs: 0
+  Debuffs: 0
+  Passives: 0
+  Cooldown: 0
+  damageMultiplier: 10

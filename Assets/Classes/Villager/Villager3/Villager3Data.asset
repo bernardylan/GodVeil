@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3168e047acb30ef43bad273f1751b788, type: 3}
-  m_Name: VillagerData3
+  m_Name: Villager3Data
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: CLASS_VILLAGER3
   classIcon: {fileID: 0}
   classPrefab: {fileID: 4257887952437309409, guid: 225857d186d74dc47b17402ceb0e09a8, type: 3}
   tier: 0
   isLocked: 0
-  baseStats: {fileID: 11400000, guid: b44e629515709c540bf63a7e44abd28e, type: 2}
   baseHP: 500
   baseDefense: 0.05
   baseCritRate: 0.05
   baseDodge: 0.05
   baseHitChance: 0.85
   baseEnergyRegen: 1
-  baseSpeed: 1
+  baseSpeed: 50
+  proficiencies: {fileID: 11400000, guid: b44e629515709c540bf63a7e44abd28e, type: 2}
   autoAttack: {fileID: 11400000, guid: bc68c4860e5aa2e4a9d8cddacd831bb7, type: 2}
   specialSkill: {fileID: 11400000, guid: 252f15e7567fb8040b3bb6b1e911b951, type: 2}
   ultimateSkill: {fileID: 11400000, guid: 7588e9037ad9d9d43bd74f196b8298ad, type: 2}

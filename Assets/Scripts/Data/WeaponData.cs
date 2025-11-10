@@ -8,7 +8,6 @@ public class WeaponData : ScriptableObject
     public Sprite weaponIcon;
     public int BaseDamage;
 
-    [Header("Base Stats")]
-    public StatProfile baseStats; // Stock stats STR/DEX/INT....
-
+    [Header("Proficiencies")]
+    public StatProfile proficiencies; // STR/DEX/INT
 }
