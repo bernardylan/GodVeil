@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be39b27a52d7c5242a27b373fe11e618, type: 3}
+  m_Name: Villager4Ultimate
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  icon: {fileID: 21300000, guid: 55997dcb6e93a8a4abb04d6c790ea43d, type: 3}
+  skillType: 2
+  element: 0
+  skillNameKey: VILLAGER_ULTI
+  skillDescriptionKey: VILLAGER_ULTI_DESC
+  cooldown: 0
+  damageMultiplier: 0

@@ -1,6 +1,4 @@
-using Mono.Cecil.Cil;
 using System.Collections;
-using System.ComponentModel.Design;
 using UnityEngine;
 
 public class FadeInOut : MonoBehaviour
@@ -32,12 +30,12 @@ public class FadeInOut : MonoBehaviour
 
     private void Start()
     {
-        if(mainMenuUI != null)
+        if (mainMenuUI != null)
             mainMenuUI.SetActive(false);
 
-        foreach(Animator a in GetComponentsInChildren<Animator>(true)) // Removes main text Animator, ensures only the mirror text animator is called
+        foreach (Animator a in GetComponentsInChildren<Animator>(true)) // Removes main text Animator, ensures only the mirror text animator is called
         {
-            if(a != anim)
+            if (a != anim)
             {
                 childAnim = a;
                 break;
@@ -57,6 +55,8 @@ public class FadeInOut : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H) && active == true)
         {
+            SoundManager.Instance.PlaySFX("FirstScreen");
+
             active = false;
             if (fadeInOutCo != null)
                 StopCoroutine(fadeInOutCo);
@@ -80,6 +80,7 @@ public class FadeInOut : MonoBehaviour
 
         if (mainMenuUI != null)
             mainMenuUI.SetActive(true);
+        SoundManager.Instance.PlayMusicWithFade("MainMenuTheme", 6f);
     }
 
     // Plays the animations as long as the texts exist (before pressing any key)
@@ -95,7 +96,7 @@ public class FadeInOut : MonoBehaviour
             yield return waitTime;
         }
     }
-    
+
     // Helper function to ensure both animations are sync'd
     private void PlayBothAnimations(string mainAnim, string childAnim)
     {
@@ -103,5 +104,15 @@ public class FadeInOut : MonoBehaviour
             anim.Play(mainAnim, 0, 0f);
         if (this.childAnim != null)
             this.childAnim.Play(childAnim, 0, 0f);
+    }
+
+    public void PlayFirstButtonSound()
+    {
+        SoundManager.Instance.PlaySFX("FirstScreen");
+    }
+
+    public void PlayMainMenuMusic()
+    {
+        SoundManager.Instance.PlayMusicWithFade("MainMenuTheme");
     }
 }

@@ -13,11 +13,17 @@ MonoBehaviour:
   m_Name: WizardData
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: CLASS_WIZARD
-  classIcon: {fileID: 0}
-  classPrefab: {fileID: 4575578290734660153, guid: 6d1a7b1c1e5954648b61120a0ccd15bb, type: 3}
+  classIcon: {fileID: 21300000, guid: 265620f681f3e1d4a8343f84ecd9df66, type: 3}
+  classPrefab: {fileID: 0}
   tier: 1
   isLocked: 0
   baseStats: {fileID: 11400000, guid: 8a7ac8a4b7194bf4e88def3f6ed97a13, type: 2}
+  baseHP: 500
+  baseDefense: 0.05
+  baseCritRate: 0.05
+  baseDodge: 0.05
+  baseHitChance: 0.85
+  baseEnergyRegen: 1
   autoAttack: {fileID: 11400000, guid: 76095cfc20ace904fba1b55d112843bf, type: 2}
   specialSkill: {fileID: 11400000, guid: ace1bff6afbc01e4fa57c9a938c4cab1, type: 2}
   ultimateSkill: {fileID: 11400000, guid: 9d5aadc982d91fb48bf9ae9cceb1828d, type: 2}

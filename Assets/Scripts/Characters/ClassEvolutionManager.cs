@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ClassEvolutionManager : MonoBehaviour
@@ -8,12 +8,24 @@ public class ClassEvolutionManager : MonoBehaviour
     [SerializeField] private ClassData[] tier3Classes;
     [SerializeField] private ClassEvolutionUI[] panels;
 
+    private int currentSlotIndex = 0;
+
     private void Update()
     {
+        //debug
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // Randomly choose a character to evolve
+            int randomSlot = Random.Range(0, CharacterManager.Instance.Characters.Count);
+            SetTargetSlot(randomSlot);
+
             ShowEvolutionsOptions();
         }
+    }
+
+    public void SetTargetSlot(int index)
+    {
+        currentSlotIndex = Mathf.Clamp(index, 0, CharacterManager.Instance.Characters.Count - 1);
     }
 
     public void ShowEvolutionsOptions()
@@ -26,8 +38,7 @@ public class ClassEvolutionManager : MonoBehaviour
 
     private void OnClassSelected(ClassData selectedClass)
     {
-        CharacterManager.Instance.InitializeCharacter(selectedClass);
-        Debug.Log($"Selected class: {selectedClass.className}");
+        CharacterManager.Instance.EvolveCharacter(currentSlotIndex, selectedClass);
     }
 
     private static ClassData[] GetRandomClasses(ClassData[] available, int count)

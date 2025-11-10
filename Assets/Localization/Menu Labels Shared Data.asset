@@ -43,6 +43,14 @@ MonoBehaviour:
     m_Key: mainMenu.fullScreen
     m_Metadata:
       m_Items: []
+  - m_Id: 5183770409762816
+    m_Key: mainMenu.Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5183819327930368
+    m_Key: mainMenu.SFX
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

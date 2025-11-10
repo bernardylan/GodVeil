@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: RogueData
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: CLASS_ROGUE
-  classIcon: {fileID: 0}
+  classIcon: {fileID: 21300000, guid: ab7628035d250324f88aefe40efe67f6, type: 3}
   classPrefab: {fileID: 7198852199442753240, guid: dd972d428aec5394c9d3341973b8efaf, type: 3}
   tier: 1
   isLocked: 0
   baseStats: {fileID: 11400000, guid: fc963824a1c4c2740962e62c3eaaf76d, type: 2}
+  baseHP: 500
+  baseDefense: 0.05
+  baseCritRate: 0.05
+  baseDodge: 0.05
+  baseHitChance: 0.85
+  baseEnergyRegen: 1
+  baseSpeed: 1
   autoAttack: {fileID: 11400000, guid: d1b74ee16e5621e4aa8e37bc3dfe6692, type: 2}
   specialSkill: {fileID: 11400000, guid: 2d8c5eab7fec7794f8a394f5562a4231, type: 2}
   ultimateSkill: {fileID: 11400000, guid: fe67bd24f75b4f64e8c5cf130fe33e19, type: 2}
