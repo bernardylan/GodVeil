@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71a22a439973da14c81cef5f3d7115f0
+    m_Address: Assets/Localization/Enemies/EnemyNames Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9246192b5fcfc4a44934076e2a55c56a
     m_Address: Assets/Localization/Classes/Skills/Passives Shared Data.asset
     m_ReadOnly: 1

@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
 using System;
 
-
 [RequireComponent(typeof(HpComponent))]
-public class CombatUnit : MonoBehaviour
+public abstract class CombatUnit : MonoBehaviour
 {
     [Header("Unit Data")]
-    public CharacterStats characterStats;
     public bool isEnemy = false;
 
     [Header("Combat Settings")]
-    public float atb = 0f;                 // 0 → 100
-    public float atbSpeedMultiplier = 1f;  // Modifie vitesse ATB (pour buffs/debuffs)
-    public float energy = 0f;              // Pour Ultimate
+    public float atb = 0f;
+    public float atbSpeedMultiplier = 1f;
+    public float energy = 0f;
     public float maxEnergy = 100f;
 
     [Header("Skills")]
@@ -22,22 +20,14 @@ public class CombatUnit : MonoBehaviour
 
     public event Action<CombatUnit, SkillData> OnPerformSkill;
 
-    private HpComponent hpComponent;
+    protected HpComponent hpComponent;
 
     protected virtual void Awake()
     {
         hpComponent = GetComponent<HpComponent>();
-        if (characterStats != null)
-        {
-            energy = 0f;
-            atb = 0f;
-            autoAttack = characterStats.CurrentClass.autoAttack;
-            specialSkill = characterStats.CurrentClass.specialSkill;
-            ultimateSkill = characterStats.CurrentClass.ultimateSkill;
-        }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (hpComponent.HP <= 0f) return;
 
@@ -47,9 +37,7 @@ public class CombatUnit : MonoBehaviour
 
     private void UpdateATB()
     {
-        float speed = characterStats.Derived.Speed;
-        atb += Time.deltaTime * speed * atbSpeedMultiplier;
-
+        atb += Time.deltaTime * atbSpeedMultiplier;
         if (atb > 100f) atb = 100f;
     }
 
@@ -58,7 +46,6 @@ public class CombatUnit : MonoBehaviour
         if (atb < 100f) return;
 
         SkillData chosenSkill = DecideSkill();
-
         if (chosenSkill != null)
         {
             PerformSkill(chosenSkill);
@@ -68,39 +55,23 @@ public class CombatUnit : MonoBehaviour
 
     protected virtual SkillData DecideSkill()
     {
-        // Ultimate check
         if (ultimateSkill != null && energy >= maxEnergy)
-        {
             return ultimateSkill;
-        }
-
-        // Special check
         if (specialSkill != null)
-        {
             return specialSkill;
-        }
-
-        // Fallback auto attack
         return autoAttack;
     }
 
-    private void PerformSkill(SkillData skill)
+    protected virtual void PerformSkill(SkillData skill)
     {
-        // Placeholder : déclenche event pour CombatManager ou système d'effet
         OnPerformSkill?.Invoke(this, skill);
 
-        // Gérer l'énergie pour Ultimate
         if (skill == ultimateSkill)
-        {
             energy = 0f;
-        }
         else
-        {
-            energy = Mathf.Min(maxEnergy, energy + 10f); // Exemple : +10 énergie par action
-        }
+            energy = Mathf.Min(maxEnergy, energy + 10f);
 
-        // Debug
-        Debug.Log($"{(isEnemy ? "Enemy" : "Player")} {characterStats.CurrentClass.className} uses {skill.skillNameKey}");
+        Debug.Log($"{(isEnemy ? "Enemy" : "Player")} uses {skill.skillNameKey}");
     }
 
     public void GainEnergy(float amount)

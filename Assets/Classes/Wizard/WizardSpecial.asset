@@ -17,5 +17,5 @@ MonoBehaviour:
   element: 0
   skillNameKey: WIZARD_SPECIAL
   skillDescriptionKey: WIZARD_SPECIAL_DESC
-  cooldown: 0
-  damageMultiplier: 0
+  cooldown: 1
+  damageMultiplier: 1
