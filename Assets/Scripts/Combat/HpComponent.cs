@@ -25,6 +25,16 @@ public class HpComponent : MonoBehaviour, IHasHp
         OnHPChanged?.Invoke(currentHP);
     }
 
+    public void Initialize(float maxHP, float defense = 0f, int team = 0)
+    {
+        this.maxHP = maxHP;
+        this.currentHP = maxHP;
+        this.mitigation = defense;
+        this.teamID = team;
+        OnHPChanged?.Invoke(currentHP);
+    }
+
+
     public float TakeDamage(in DamageInfo dmg)
     {
         if (currentHP <= 0f) return 0f;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GodVeil/DoorData")]
+[CreateAssetMenu(menuName = "GodVeil/Door Data")]
 public class DoorData : ScriptableObject
 {
     public DoorType type;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: CLASS_VILLAGER2
   classIcon: {fileID: 0}
-  classVisuPrefab: {fileID: 4257887952437309409, guid: 5e0cdab3976018c43b5f52a0ea57a8a8, type: 3}
+  classPrefab: {fileID: 4257887952437309409, guid: 48c35e613605d214e9781b9a4242e8da, type: 3}
   tier: 0
   isLocked: 0
   baseStats: {fileID: 11400000, guid: 86048db48808abc4abd515950be0b664, type: 2}
@@ -24,7 +24,8 @@ MonoBehaviour:
   baseDodge: 0.05
   baseHitChance: 0.85
   baseEnergyRegen: 1
-  autoAttack: {fileID: 11400000, guid: 4d529a26ef8a71742a7fd814d224e600, type: 2}
-  specialSkill: {fileID: 11400000, guid: 7611b82210e92c04d9476cc2a09316b8, type: 2}
-  ultimateSkill: {fileID: 11400000, guid: 20ef6663ab9b17740a0b47f47e81e199, type: 2}
-  passive: {fileID: 11400000, guid: ca431a7173d581b489486f28df31cdb1, type: 2}
+  baseSpeed: 1
+  autoAttack: {fileID: 11400000, guid: c727730b960acd44886ac5420a5116bb, type: 2}
+  specialSkill: {fileID: 11400000, guid: 1f7e4f681267eb742a00daa9bcd807ad, type: 2}
+  ultimateSkill: {fileID: 11400000, guid: 809f9d928f39eac4a9c21f7a7e73d8e8, type: 2}
+  passive: {fileID: 11400000, guid: f74775880dc3aff4b971b0a583eb7c35, type: 2}

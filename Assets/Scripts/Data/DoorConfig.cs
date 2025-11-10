@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GodVeil/DoorConfig")]
+[CreateAssetMenu(menuName = "GodVeil/Door Config")]
 public class DoorConfig : ScriptableObject
 {
     public List<DoorData> allDoors;

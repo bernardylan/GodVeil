@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatProfile
   stats:
   - type: 0
-    proficiency: 0
+    proficiency: 0.2
   - type: 1
-    proficiency: 0
+    proficiency: 0.2
   - type: 2
-    proficiency: 0
+    proficiency: 0.2
   - type: 3
-    proficiency: 0
+    proficiency: 0.2

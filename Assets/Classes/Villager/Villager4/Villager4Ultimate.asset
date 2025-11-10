@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be39b27a52d7c5242a27b373fe11e618, type: 3}
-  m_Name: RangerAutoAttack
+  m_Name: Villager4Ultimate
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  icon: {fileID: 21300000, guid: d585e1db6f40ed6499e3fa31f359f606, type: 3}
-  skillType: 0
+  icon: {fileID: 21300000, guid: 55997dcb6e93a8a4abb04d6c790ea43d, type: 3}
+  skillType: 2
   element: 0
-  skillNameKey: RANGER_AUTO
-  skillDescriptionKey: RANGER_AUTO_DESC
+  skillNameKey: VILLAGER_ULTI
+  skillDescriptionKey: VILLAGER_ULTI_DESC
   cooldown: 0
-  damageMultiplier: 1
+  damageMultiplier: 0

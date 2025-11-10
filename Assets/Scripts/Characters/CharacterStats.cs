@@ -6,7 +6,6 @@ public class CharacterStats
     public float CurrentHP;
     public float CurrentEnergy;
     public bool IsLocked;
-    public int Level;
 
     public DerivedStats Derived;
 
@@ -38,7 +37,8 @@ public class CharacterStats
             CritRate = CurrentClass.baseCritRate * CritScaling * baseStats.stats[1].proficiency,
             Dodge = CurrentClass.baseDodge * DodgeScaling * baseStats.stats[1].proficiency,
             HitChance = CurrentClass.baseHitChance * HitScaling * baseStats.stats[2].proficiency,
-            EnergyRegen = CurrentClass.baseEnergyRegen * EnergyScaling * baseStats.stats[2].proficiency
+            EnergyRegen = CurrentClass.baseEnergyRegen * EnergyScaling * baseStats.stats[2].proficiency,
+            Speed = CurrentClass.baseSpeed * baseStats.stats[3].proficiency,
         };
     }
 }

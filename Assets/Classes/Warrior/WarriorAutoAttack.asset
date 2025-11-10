@@ -18,4 +18,4 @@ MonoBehaviour:
   skillNameKey: WARRIOR_AUTO
   skillDescriptionKey: WARRIOR_AUTO_DESC
   cooldown: 0
-  damageMultiplier: 0
+  damageMultiplier: 30

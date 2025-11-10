@@ -18,6 +18,7 @@ public class ClassData : ScriptableObject
     public float baseDodge = 0.05f;
     public float baseHitChance = 0.85f;
     public float baseEnergyRegen = 1f;
+    public float baseSpeed = 1f;
 
     [Header("Links")]
     public SkillData autoAttack;
@@ -44,6 +45,7 @@ public struct DerivedStats
     public float Dodge;
     public float HitChance;
     public float EnergyRegen;
+    public float Speed;
 }
 
 public enum SkillType { AutoAttack, Special, Ultimate }
