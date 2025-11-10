@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: GodVeil
-  defaultCursor: {fileID: 2800000, guid: d21b7ec4b7ca3244d9fbce61a9fab660, type: 3}
+  defaultCursor: {fileID: 2800000, guid: e9497df275f5f1f42b69e32c6ab7b5ec, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.09803922, g: 0.09803922, b: 0.09803922, a: 1}
   m_ShowUnitySplashScreen: 1
