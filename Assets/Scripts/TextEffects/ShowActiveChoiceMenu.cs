@@ -5,44 +5,36 @@ using UnityEngine.UI;
 
 public class ShowActiveChoiceMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
-    private Image activeTextDesign;
-
-    private void Awake()
-    {
-        activeTextDesign = GetComponentInChildren<Image>(true);
-
-        if(activeTextDesign != null)
-            activeTextDesign.gameObject.SetActive(false);
-    }
+    [Header("Size")]
+    [SerializeField] private Vector2 inactiveScale = new Vector2(1, 1);
+    [SerializeField] private Vector2 activeScale = new Vector2(1.2f, 1.2f);
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ShowImage();
+        ActiveButtonChoice();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        HideImage();
+        InactiveButtonChoice();
     }
     public void OnSelect(BaseEventData eventData)
     {
-        ShowImage();
+        ActiveButtonChoice();
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        HideImage();
+        InactiveButtonChoice();
     }
 
-    private void ShowImage()
+    private void ActiveButtonChoice()
     {
-        if(activeTextDesign != null)
-            activeTextDesign.gameObject.SetActive(true);
+        this.transform.localScale = activeScale;
     }
 
-    private void HideImage()
+    private void InactiveButtonChoice()
     {
-        if(activeTextDesign != null)
-            activeTextDesign.gameObject.SetActive(false);
+        this.transform.localScale = inactiveScale;
     }
 }
