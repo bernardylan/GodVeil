@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Tiles
+  - Decorations
   - 
   - 
   - 
@@ -43,6 +43,12 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 2165632523
+    locked: 0
+  - name: Tiles
+    uniqueID: 140533693
+    locked: 0
+  - name: Decorations
+    uniqueID: 3256672833
     locked: 0
   m_RenderingLayers:
   - Default
