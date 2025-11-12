@@ -34,7 +34,8 @@ public class CombatManager : MonoBehaviour
     {
         SpawnPlayerUnits();
         SpawnEnemyUnits(2);
-
+        SoundManager.Instance.MusicVolume(0.2f);
+        SoundManager.Instance.PlayMusicWithFade("BattleTheme", 1.5f);
         //uiManager.Initialize(playerUnits);
     }
 
@@ -45,7 +46,7 @@ public class CombatManager : MonoBehaviour
         {
             var prefab = chars[i].CurrentClass.classPrefab;
             var spawn = playerSpawnPositions[i];
-            var obj = Instantiate(prefab, spawn.position, Quaternion.identity);
+            var obj = Instantiate(prefab, spawn.position, spawn.rotation);
 
             var unit = obj.GetComponent<PlayerUnit>();
             unit.Initialize(chars[i]);
