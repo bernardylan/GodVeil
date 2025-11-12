@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3663465174814015606}
   - component: {fileID: 8932063289035722600}
   - component: {fileID: 7567932536759930524}
-  - component: {fileID: -1984457968169068401}
+  - component: {fileID: 248255642998454008}
   m_Layer: 0
   m_Name: Villager1
   m_TagString: Untagged
@@ -153,7 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HpComponent
   teamID: 0
   mitigation: 0
---- !u!114 &-1984457968169068401
+  currentHP: 0
+--- !u!114 &248255642998454008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,15 +163,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4257887952437309409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b54ca4c2e21174b800fc766d8e13d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 74b9cba49a1572040821ef81206418e6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatUnit
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUnit
+  isEnemy: 0
+  ATB: 0
+  ATBSpeedMultiplier: 1
+  energy: 0
+  maxEnergy: 100
+  autoAttack: {fileID: 0}
+  specialSkill: {fileID: 0}
+  ultimateSkill: {fileID: 0}
+  hpComponent: {fileID: 0}
   characterStats:
-    CurrentClass: {fileID: 11400000, guid: d68b7f47479652047889ea7c03bde88f, type: 2}
+    CurrentClass: {fileID: 0}
     EquippedWeapon: {fileID: 0}
     CurrentHP: 0
     CurrentEnergy: 0
-    IsLocked: 0
     Derived:
       BaseHP: 0
       MaxHP: 0
@@ -180,11 +189,3 @@ MonoBehaviour:
       HitChance: 0
       EnergyRegen: 0
       Speed: 0
-  isEnemy: 0
-  atb: 0
-  atbSpeedMultiplier: 1
-  energy: 0
-  maxEnergy: 100
-  autoAttack: {fileID: 0}
-  specialSkill: {fileID: 0}
-  ultimateSkill: {fileID: 0}

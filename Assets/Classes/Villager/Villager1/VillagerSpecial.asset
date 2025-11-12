@@ -17,5 +17,8 @@ MonoBehaviour:
   element: 0
   skillNameKey: VILLAGER_SPECIAL
   skillDescriptionKey: VILLAGER_SPECIAL_DESC
-  cooldown: 0
-  damageMultiplier: 0
+  Buffs: 0
+  Debuffs: 0
+  Passives: 0
+  Cooldown: 0
+  damageMultiplier: 20

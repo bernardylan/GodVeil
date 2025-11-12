@@ -13,6 +13,9 @@ public class SkillData : ScriptableObject
     public string skillDescriptionKey; // ex: "Villager_AutoAttack_Desc"
 
     [Header("Stats")]
-    public float cooldown;
+    public float Buffs = 0f;            // +% buffs
+    public float Debuffs = 0f;          // -% debuffs
+    public float Passives = 0f;         // +% passives
+    public float Cooldown;
     public float damageMultiplier;
 }

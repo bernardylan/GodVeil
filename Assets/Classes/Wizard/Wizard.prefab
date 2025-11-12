@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2807569846392004787}
   - component: {fileID: 3932553986882438344}
   - component: {fileID: 6937759922781163275}
-  - component: {fileID: 4562809825590266871}
   m_Layer: 0
   m_Name: Wizard
   m_TagString: Untagged
@@ -153,38 +152,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HpComponent
   teamID: 0
   mitigation: 0.95
---- !u!114 &4562809825590266871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4575578290734660153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b54ca4c2e21174b800fc766d8e13d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatUnit
-  characterStats:
-    CurrentClass: {fileID: 11400000, guid: a7cd75e65f96b674c8c91adc3182a9de, type: 2}
-    EquippedWeapon: {fileID: 0}
-    CurrentHP: 0
-    CurrentEnergy: 0
-    IsLocked: 0
-    Derived:
-      BaseHP: 0
-      MaxHP: 0
-      Defense: 0
-      CritRate: 0
-      Dodge: 0
-      HitChance: 0
-      EnergyRegen: 0
-      Speed: 0
-  isEnemy: 1
-  atb: 0
-  atbSpeedMultiplier: 1
-  energy: 0
-  maxEnergy: 100
-  autoAttack: {fileID: 0}
-  specialSkill: {fileID: 0}
-  ultimateSkill: {fileID: 0}

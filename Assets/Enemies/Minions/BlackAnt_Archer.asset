@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd188de8efe5cb049bb5d9a8ef43457f, type: 3}
+  m_Name: BlackAnt_Archer
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  enemyNameKey: MINION_BLACKANT_ARCHER
+  icon: {fileID: 2228784920347791865, guid: a08f84dfa08474441b01836c3e30bb29, type: 3}
+  prefab: {fileID: 2796629651262538200, guid: 7f88fb3e0fc6e1543adf16a040020121, type: 3}
+  enemyType: 0
+  maxHP: 100
+  attack: 20
+  defense: 0.1
+  speed: 50
+  critChance: 0.1
+  critMultiplier: 1.5
+  autoAttack: {fileID: 11400000, guid: 82f5ef4593e926f4e8b36e06be65fe1f, type: 2}
+  specialSkill: {fileID: 11400000, guid: 203ed1ace53067b45b3ffdabded4b7be, type: 2}
+  ultimateSkill: {fileID: 11400000, guid: 1599eccbc67e1804ebff4100bfbcf4f3, type: 2}
+  ultimateUsageThreshold: 1
+  specialUsageChance: 0.3

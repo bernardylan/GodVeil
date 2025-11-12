@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd188de8efe5cb049bb5d9a8ef43457f, type: 3}
+  m_Name: BlackAnt_Knight
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  enemyNameKey: MINION_BLACKANT_KNIGHT
+  icon: {fileID: -2866420130094685005, guid: d1455e914a55b344d99b0d26f243ba4f, type: 3}
+  prefab: {fileID: 7990438836237800100, guid: 1bb5192c6fbc9e54f875ee9363950c7f, type: 3}
+  enemyType: 0
+  maxHP: 100
+  attack: 20
+  defense: 0.1
+  speed: 50
+  critChance: 0.1
+  critMultiplier: 1.5
+  autoAttack: {fileID: 11400000, guid: 7b129cdf49010e743b53f1b8f3a8f3e8, type: 2}
+  specialSkill: {fileID: 11400000, guid: 1466d90984fc72e47869d5a6370256b5, type: 2}
+  ultimateSkill: {fileID: 11400000, guid: 864f377a7d78eb747bb89225d6d0b460, type: 2}
+  ultimateUsageThreshold: 1
+  specialUsageChance: 0.3

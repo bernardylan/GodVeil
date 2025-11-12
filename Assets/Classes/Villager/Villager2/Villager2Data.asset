@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3168e047acb30ef43bad273f1751b788, type: 3}
+  m_Name: Villager2Data
+  m_EditorClassIdentifier: Assembly-CSharp::ClassData
+  className: CLASS_VILLAGER2
+  classIcon: {fileID: 0}
+  classPrefab: {fileID: 4257887952437309409, guid: 48c35e613605d214e9781b9a4242e8da, type: 3}
+  tier: 0
+  isLocked: 0
+  baseHP: 500
+  baseDefense: 0.05
+  baseCritRate: 0.05
+  baseDodge: 0.05
+  baseHitChance: 0.85
+  baseEnergyRegen: 1
+  baseSpeed: 50
+  proficiencies: {fileID: 11400000, guid: 86048db48808abc4abd515950be0b664, type: 2}
+  autoAttack: {fileID: 11400000, guid: c727730b960acd44886ac5420a5116bb, type: 2}
+  specialSkill: {fileID: 11400000, guid: 1f7e4f681267eb742a00daa9bcd807ad, type: 2}
+  ultimateSkill: {fileID: 11400000, guid: 809f9d928f39eac4a9c21f7a7e73d8e8, type: 2}
+  passive: {fileID: 11400000, guid: f74775880dc3aff4b971b0a583eb7c35, type: 2}

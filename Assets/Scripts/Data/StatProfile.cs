@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
-[CreateAssetMenu(menuName = "GodVeil/Stat Profile")]
 
+[CreateAssetMenu(menuName = "GodVeil/Stat Profile")]
 public class StatProfile : ScriptableObject
 {
-    public StatValue[] stats; //STR, DEX, INT
+    public StatValue[] stats; // STR / DEX / INT / SPEED
+
+    public float GetProficiency(StatType type)
+    {
+        foreach (var s in stats)
+            if (s.type == type) return Mathf.Clamp01(s.proficiency);
+        return 0f;
+    }
 
     private void OnValidate()
     {
         if (stats == null) return;
-
         foreach (var s in stats)
-        {
-            // Snap
-            s.proficiency = Mathf.Round(s.proficiency * 10f) / 10f;
-        }
+            s.proficiency = Mathf.Round(s.proficiency * 10f) / 10f; // Snap
     }
 }
 
@@ -21,6 +24,7 @@ public class StatProfile : ScriptableObject
 public class StatValue
 {
     public StatType type;
-    [Tooltip("1 = S+ | 0.9 = S | 0.8 = A+ | 0.7 = A | 0.6 = B+ | 0.5 = B| 0.4 = C+ | 0.3 = C | 0.2 = D+ | 0.1 = D | 0 = null")]
-    [Range(0f, 1f)] public float proficiency;
+    [Range(0f, 1f)]
+    [Tooltip("0=D, 0.1=D+, 0.2=D+, ... 1=S+")]
+    public float proficiency;
 }

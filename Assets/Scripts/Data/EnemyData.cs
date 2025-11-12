@@ -1,5 +1,12 @@
 ﻿using UnityEngine;
 
+public enum EnemyType
+{
+    Minion,
+    Elite,
+    Boss
+}
+
 [CreateAssetMenu(menuName = "GodVeil/Enemy Data")]
 public class EnemyData : ScriptableObject
 {
@@ -7,6 +14,9 @@ public class EnemyData : ScriptableObject
     public string enemyNameKey;
     public Sprite icon;
     public GameObject prefab;
+
+    [Header("Type")]
+    public EnemyType enemyType;
 
     [Header("Base Stats")]
     public float maxHP = 100f;
@@ -22,6 +32,6 @@ public class EnemyData : ScriptableObject
     public SkillData ultimateSkill;
 
     [Header("AI Settings")]
-    [Range(0f, 1f)] public float ultimateUsageThreshold = 1f; // Ex: 1f = 100% energy
-    [Range(0f, 1f)] public float specialUsageChance = 0.3f;   // Chance of using special skill
+    [Range(0f, 1f)] public float ultimateUsageThreshold = 1f;
+    [Range(0f, 1f)] public float specialUsageChance = 0.3f;
 }

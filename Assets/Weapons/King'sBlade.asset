@@ -15,4 +15,4 @@ MonoBehaviour:
   weaponName: King's blade
   weaponIcon: {fileID: 21300000, guid: 2c57899a1985d344286737c9bf595a7f, type: 3}
   BaseDamage: 100
-  baseStats: {fileID: 11400000, guid: 7085022621997764abaeedd0bcc44fad, type: 2}
+  proficiencies: {fileID: 11400000, guid: 7085022621997764abaeedd0bcc44fad, type: 2}

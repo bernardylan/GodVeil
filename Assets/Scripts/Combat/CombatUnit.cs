@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System;
-
+using System.Collections.Generic;
 
 [RequireComponent(typeof(HpComponent))]
-public class CombatUnit : MonoBehaviour
+public abstract class CombatUnit : MonoBehaviour
 {
-    [Header("Unit Data")]
-    public CharacterStats characterStats;
+    [Header("Unit Info")]
     public bool isEnemy = false;
 
-    [Header("Combat Settings")]
-    public float atb = 0f;                 // 0 → 100
-    public float atbSpeedMultiplier = 1f;  // Modifie vitesse ATB (pour buffs/debuffs)
-    public float energy = 0f;              // Pour Ultimate
+    [Header("Combat Stats")]
+    public float ATB = 0f;
+    public float ATBSpeedMultiplier = 1f;
+    public float energy = 0f;
     public float maxEnergy = 100f;
 
     [Header("Skills")]
@@ -22,89 +21,99 @@ public class CombatUnit : MonoBehaviour
 
     public event Action<CombatUnit, SkillData> OnPerformSkill;
 
-    private HpComponent hpComponent;
+    public HpComponent hpComponent;
 
     protected virtual void Awake()
     {
         hpComponent = GetComponent<HpComponent>();
-        if (characterStats != null)
-        {
-            energy = 0f;
-            atb = 0f;
-            autoAttack = characterStats.CurrentClass.autoAttack;
-            specialSkill = characterStats.CurrentClass.specialSkill;
-            ultimateSkill = characterStats.CurrentClass.ultimateSkill;
-        }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (hpComponent.HP <= 0f) return;
-
         UpdateATB();
         TryPerformAction();
     }
 
     private void UpdateATB()
     {
-        float speed = characterStats.Derived.Speed;
-        atb += Time.deltaTime * speed * atbSpeedMultiplier;
-
-        if (atb > 100f) atb = 100f;
+        ATB += Time.deltaTime * ATBSpeedMultiplier;
+        if (ATB > 100f) ATB = 100f;
     }
 
     private void TryPerformAction()
     {
-        if (atb < 100f) return;
+        if (ATB < 100f) return;
 
-        SkillData chosenSkill = DecideSkill();
-
-        if (chosenSkill != null)
+        SkillData chosen = DecideSkill();
+        if (chosen != null)
         {
-            PerformSkill(chosenSkill);
-            atb = 0f;
+            PerformSkill(chosen);
+            ATB = 0f;
         }
     }
 
-    protected virtual SkillData DecideSkill()
+    protected abstract SkillData DecideSkill();
+
+    protected virtual void PerformSkill(SkillData skill)
     {
-        // Ultimate check
-        if (ultimateSkill != null && energy >= maxEnergy)
-        {
-            return ultimateSkill;
-        }
-
-        // Special check
-        if (specialSkill != null)
-        {
-            return specialSkill;
-        }
-
-        // Fallback auto attack
-        return autoAttack;
-    }
-
-    private void PerformSkill(SkillData skill)
-    {
-        // Placeholder : déclenche event pour CombatManager ou système d'effet
         OnPerformSkill?.Invoke(this, skill);
 
-        // Gérer l'énergie pour Ultimate
-        if (skill == ultimateSkill)
+        CombatUnit target = FindTarget();
+        if (target != null)
         {
-            energy = 0f;
-        }
-        else
-        {
-            energy = Mathf.Min(maxEnergy, energy + 10f); // Exemple : +10 énergie par action
+            DealDamage(target, skillMultiplier: skill.damageMultiplier,
+                                buffs: skill.Buffs,
+                                debuffs: skill.Debuffs,
+                                passives: skill.Passives);
         }
 
-        // Debug
-        Debug.Log($"{(isEnemy ? "Enemy" : "Player")} {characterStats.CurrentClass.className} uses {skill.skillNameKey}");
+        if (skill == ultimateSkill) energy = 0f;
+        else energy = Mathf.Min(maxEnergy, energy + 10f);
     }
 
-    public void GainEnergy(float amount)
+    protected virtual CombatUnit FindTarget()
     {
-        energy = Mathf.Min(maxEnergy, energy + amount);
+        if (CombatManager.Instance == null) return null;
+
+        List<CombatUnit> allUnits = new();
+        allUnits.AddRange(CombatManager.Instance.playerUnits);
+        allUnits.AddRange(CombatManager.Instance.enemyUnits);
+
+        foreach (var unit in allUnits)
+        {
+            if (unit == this) continue; // pas se cibler soi-même
+            if (unit.hpComponent.HP <= 0f) continue; // doit être vivant
+            if (unit.hpComponent.TeamID == hpComponent.TeamID) continue; // pas same team
+            return unit;
+        }
+
+        return null;
     }
+
+    /// <summary>
+    /// Apply damage to a target
+    /// </summary>
+    public void DealDamage(CombatUnit target, float skillMultiplier = 1f, float buffs = 0f, float debuffs = 0f, float passives = 0f)
+    {
+        if (target == null || target.hpComponent == null) return;
+
+        DamageInfo dmg = ComputeDamage(target, skillMultiplier, buffs, debuffs, passives);
+        float applied = target.hpComponent.TakeDamage(dmg);
+
+        Debug.Log($"{name} dealt {applied} damage to {target.name} (Crit: {dmg.IsCrit})");
+    }
+
+    /// <summary>
+    /// Compute damage this unit deals to a target
+    /// </summary>
+    /// <param name="target">Target unit</param>
+    /// <param name="skillMultiplier">Optional skill multiplier</param>
+    /// <param name="buffs">Buffs percentage (0.1 = +10%)</param>
+    /// <param name="debuffs">Debuffs percentage (0.2 = -20%)</param>
+    /// <param name="passives">Passive bonuses percentage</param>
+    /// <returns>DamageInfo ready to pass to HpComponent.TakeDamage</returns>
+    public abstract DamageInfo ComputeDamage(CombatUnit target, float skillMultiplier = 1f, float buffs = 0f, float debuffs = 0f, float passives = 0f);
+
+    public void GainEnergy(float amount) => energy = Mathf.Min(maxEnergy, energy + amount);
 }

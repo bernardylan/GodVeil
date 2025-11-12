@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ja-JP
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c73c3383e65a7548a53a3bd5cb135c4
+    m_Address: EnemyNames_ja-JP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja-JP
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 78eea6415c6171444a26e0d039b2d36a
     m_Address: Skills_ja-JP
     m_ReadOnly: 1

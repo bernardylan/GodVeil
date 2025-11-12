@@ -11,7 +11,6 @@ public class ClassData : ScriptableObject
     public bool isLocked = false;
 
     [Header("Base Stats")]
-    public StatProfile baseStats; // Stock stats
     public float baseHP = 500f;
     public float baseDefense = 0.05f;
     public float baseCritRate = 0.05f;
@@ -20,7 +19,11 @@ public class ClassData : ScriptableObject
     public float baseEnergyRegen = 1f;
     public float baseSpeed = 1f;
 
-    [Header("Links")]
+    [Header("Proficiencies")]
+    [Tooltip("Main stats: STR / DEX / INT / SPEED")]
+    public StatProfile proficiencies;
+
+    [Header("Skills & Passive")]
     public SkillData autoAttack;
     public SkillData specialSkill;
     public SkillData ultimateSkill;

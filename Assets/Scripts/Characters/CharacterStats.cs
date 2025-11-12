@@ -1,21 +1,24 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+using System.Collections.Generic;
+
+[System.Serializable]
 public class CharacterStats
 {
     public ClassData CurrentClass;
     public WeaponData EquippedWeapon;
+
     public float CurrentHP;
     public float CurrentEnergy;
-    public bool IsLocked;
 
     public DerivedStats Derived;
 
-    // scaling coeff.
-    private const float HPScaling      = 0.5f;  // STR boost MaxHP
-    private const float DefenseScaling = 2f;    // STR boost Defense
-    private const float CritScaling    = 3f;    // DEX boost CritRate
-    private const float DodgeScaling   = 3f;    // DEX boost Dodge
-    private const float HitScaling     = 0.2f;  // INT boost HitChance
-    private const float EnergyScaling  = 0.5f;  // INT boost EnergyRegen
+    // Scaling coefficients
+    private const float HPScaling = 0.5f;
+    private const float DefenseScaling = 2f;
+    private const float CritScaling = 3f;
+    private const float DodgeScaling = 3f;
+    private const float HitScaling = 0.2f;
+    private const float EnergyScaling = 0.5f;
 
     public CharacterStats(ClassData classData, WeaponData weapon = null)
     {
@@ -28,17 +31,37 @@ public class CharacterStats
 
     public void RecalculateDerivedStats()
     {
-        // Calculate damage from classData
-        var baseStats = CurrentClass.baseStats;
+        var prof = CurrentClass.proficiencies;
+
         Derived = new DerivedStats
         {
-            MaxHP = CurrentClass.baseHP * HPScaling * (1 + baseStats.stats[0].proficiency),
-            Defense = CurrentClass.baseDefense * DefenseScaling * baseStats.stats[0].proficiency,
-            CritRate = CurrentClass.baseCritRate * CritScaling * baseStats.stats[1].proficiency,
-            Dodge = CurrentClass.baseDodge * DodgeScaling * baseStats.stats[1].proficiency,
-            HitChance = CurrentClass.baseHitChance * HitScaling * baseStats.stats[2].proficiency,
-            EnergyRegen = CurrentClass.baseEnergyRegen * EnergyScaling * baseStats.stats[2].proficiency,
-            Speed = CurrentClass.baseSpeed * baseStats.stats[3].proficiency,
+            MaxHP = CurrentClass.baseHP * HPScaling * (1 + prof.GetProficiency(StatType.Strength)),
+            Defense = CurrentClass.baseDefense * DefenseScaling * prof.GetProficiency(StatType.Strength),
+            CritRate = CurrentClass.baseCritRate * CritScaling * prof.GetProficiency(StatType.Dexterity),
+            Dodge = CurrentClass.baseDodge * DodgeScaling * prof.GetProficiency(StatType.Dexterity),
+            HitChance = CurrentClass.baseHitChance * HitScaling * prof.GetProficiency(StatType.Intelligence),
+            EnergyRegen = CurrentClass.baseEnergyRegen * EnergyScaling * prof.GetProficiency(StatType.Intelligence),
+            Speed = CurrentClass.baseSpeed * prof.GetProficiency(StatType.Speed)
         };
+    }
+
+    // Return a dictionary for all main stats
+    public Dictionary<StatType, float> GetClassProficiencies()
+    {
+        var dict = new Dictionary<StatType, float>();
+        foreach (var stat in CurrentClass.proficiencies.stats)
+            dict[stat.type] = stat.proficiency;
+        return dict;
+    }
+
+    public Dictionary<StatType, float> GetWeaponProficiencies()
+    {
+        var dict = new Dictionary<StatType, float>();
+        if (EquippedWeapon == null) return dict;
+
+        foreach (var stat in EquippedWeapon.proficiencies.stats)
+            dict[stat.type] = stat.proficiency;
+
+        return dict;
     }
 }
