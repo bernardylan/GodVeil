@@ -103,12 +103,12 @@ TextureImporter:
       name: Tower_Construction_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 23
-        width: 104
-        height: 86
+        x: 1
+        y: 24
+        width: 127
+        height: 185
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: eeaafad3968ced240ab967aeb175b1ed
     internalID: 0
     vertices: []
     indices: 

@@ -1,8 +1,7 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
+// Make a button bigger or smaller based on mouse for hover effect
 public class ShowActiveChoiceMenu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
     [Header("Size")]

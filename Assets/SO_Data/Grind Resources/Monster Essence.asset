@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7154b45e63583384993396ff9f81727e, type: 3}
+  m_Name: Monster Essence
+  m_EditorClassIdentifier: Assembly-CSharp::ResourcesSO
+  resourceID: r_02
+  displayName: Monster Essence
+  icon: {fileID: 771779622273499393, guid: fca88a98540a7fa48b16ea1978a8e81f, type: 3}
