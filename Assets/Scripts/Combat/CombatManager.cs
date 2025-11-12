@@ -11,6 +11,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private Transform[] enemySpawnPositions;
 
     [Header("Enemy Pool")]
+    public int maxEnemy = 4;
     [SerializeField] private List<EnemyData> enemyPool = new();
 
     [Header("UI")]
@@ -33,7 +34,7 @@ public class CombatManager : MonoBehaviour
     private void Start()
     {
         SpawnPlayerUnits();
-        SpawnEnemyUnits(2);
+        SpawnEnemyUnits(maxEnemy);
         SoundManager.Instance.MusicVolume(0.2f);
         SoundManager.Instance.PlayMusicWithFade("BattleTheme", 1.5f);
         //uiManager.Initialize(playerUnits);
