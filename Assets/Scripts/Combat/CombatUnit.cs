@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.Experimental.GraphView;
 
 [RequireComponent(typeof(HpComponent))]
 public abstract class CombatUnit : MonoBehaviour
@@ -23,6 +25,14 @@ public abstract class CombatUnit : MonoBehaviour
 
     public HpComponent hpComponent;
 
+    [Header("Aggro")]
+    public Dictionary<CombatUnit, float> aggroTable = new();
+    public float AggroModifier = 1f;
+    public CombatUnit forcedTarget;
+    private float forcedTargetTimer;
+
+    public Dictionary<CombatUnit, float> damageDealt = new();
+
     protected virtual void Awake()
     {
         hpComponent = GetComponent<HpComponent>();
@@ -33,6 +43,8 @@ public abstract class CombatUnit : MonoBehaviour
         if (hpComponent.HP <= 0f) return;
         UpdateATB();
         TryPerformAction();
+        UpdateForcedTarget(Time.deltaTime);
+        UpdateAggroDecay(Time.deltaTime);
     }
 
     private void UpdateATB()
@@ -72,23 +84,92 @@ public abstract class CombatUnit : MonoBehaviour
         else energy = Mathf.Min(maxEnergy, energy + 10f);
     }
 
+    public void GenerateAggro(CombatUnit attacker, float amount)
+    {
+        if (attacker == null || attacker == this) return;
+
+        if (!aggroTable.ContainsKey(attacker))
+            aggroTable[attacker] = 0f;
+
+        aggroTable[attacker] += amount * attacker.AggroModifier;
+        Debug.Log($"{name} a maintenant {aggroTable[attacker]} aggro contre {attacker.name}");
+    }
+
+    public void UpdateForcedTarget(float deltaTime)
+    {
+        if (forcedTargetTimer > 0)
+        {
+            forcedTargetTimer -= deltaTime;
+            if (forcedTargetTimer <= 0)
+                forcedTarget = null;
+        }
+    }
+
+    private void UpdateAggroDecay(float deltaTime)
+    {
+        var toRemove = new List<CombatUnit>();
+
+        foreach (var kvp in aggroTable.ToList())
+        {
+            if (kvp.Key == null || kvp.Key.hpComponent.HP <= 0)
+            {
+                toRemove.Add(kvp.Key);
+                continue;
+            }
+
+            // Décroit 2 % par seconde
+            aggroTable[kvp.Key] = Mathf.Max(0, kvp.Value - deltaTime * 0.02f * kvp.Value);
+        }
+
+        foreach (var unit in toRemove)
+            aggroTable.Remove(unit);
+    }
+
+    public void ApplyTaunt(CombatUnit source, float duration)
+    {
+        forcedTarget = source;
+        forcedTargetTimer = duration;
+    }
+
+    public float GetAggroTowards(CombatUnit source)
+    {
+        if (aggroTable.TryGetValue(source, out float value))
+            return value;
+
+        return 0f;
+    }
+
     protected virtual CombatUnit FindTarget()
     {
         if (CombatManager.Instance == null) return null;
 
-        List<CombatUnit> allUnits = new();
-        allUnits.AddRange(CombatManager.Instance.playerUnits);
-        allUnits.AddRange(CombatManager.Instance.enemyUnits);
+        // taunt
+        if(forcedTarget != null && forcedTarget.hpComponent.HP > 0)
+            return forcedTarget;
 
-        foreach (var unit in allUnits)
+        //Get opposite team enemy
+        List<CombatUnit> enemies = isEnemy 
+        ? CombatManager.Instance.playerUnits.Cast<CombatUnit>().ToList()
+        : CombatManager.Instance.enemyUnits.Cast<CombatUnit>().ToList();
+
+        // Get the first enemy on aggro table range
+        if (aggroTable.Count > 0)
         {
-            if (unit == this) continue; // pas se cibler soi-même
-            if (unit.hpComponent.HP <= 0f) continue; // doit être vivant
-            if (unit.hpComponent.TeamID == hpComponent.TeamID) continue; // pas same team
-            return unit;
+            CombatUnit topAggro = aggroTable
+                .Where(kvp => kvp.Key.hpComponent.HP > 0)
+                .OrderByDescending(kvp => kvp.Value)
+                .Select(kvp => kvp.Key)
+                .FirstOrDefault();
+
+            if (topAggro != null)
+                return topAggro;
         }
 
-        return null;
+        // Target randomly an enemy
+        return enemies
+            .Where(e => e.hpComponent.HP > 0)
+            .OrderBy(_ => UnityEngine.Random.value)
+            .FirstOrDefault();
     }
 
     /// <summary>
@@ -99,7 +180,14 @@ public abstract class CombatUnit : MonoBehaviour
         if (target == null || target.hpComponent == null) return;
 
         DamageInfo dmg = ComputeDamage(target, skillMultiplier, buffs, debuffs, passives);
+        DamageInfo final = new DamageInfo(dmg.Amount, this.gameObject, dmg.IsCrit);
+
         float applied = target.hpComponent.TakeDamage(dmg);
+
+        if (!damageDealt.ContainsKey(target))
+              damageDealt[target] = 0f;
+
+        damageDealt[target] += applied;
 
         Debug.Log($"{name} dealt {applied} damage to {target.name} (Crit: {dmg.IsCrit})");
     }

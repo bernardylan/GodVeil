@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Villager2Data
   m_EditorClassIdentifier: Assembly-CSharp::ClassData
   className: CLASS_VILLAGER2
-  classIcon: {fileID: 0}
+  classIcon: {fileID: 2750298860172458669, guid: 6a32a49d11524e847a9a5e5944c77339, type: 3}
   classPrefab: {fileID: 4257887952437309409, guid: 48c35e613605d214e9781b9a4242e8da, type: 3}
   tier: 0
   isLocked: 0

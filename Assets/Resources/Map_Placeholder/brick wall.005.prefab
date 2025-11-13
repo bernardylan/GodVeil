@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7898152628744206667}
   - component: {fileID: 5504929789362699963}
   - component: {fileID: 1385562023554364828}
+  - component: {fileID: 4766934602147386273}
   m_Layer: 0
   m_Name: brick wall.005
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3209747887566721966}
-  m_Mesh: {fileID: 9014347587849577134, guid: 982dd2eea497ed64f969dde3aa5c2fc8, type: 3}
+  m_Mesh: {fileID: 4300000, guid: fd0f93e4e7941134285ced24ffd2f760, type: 2}
 --- !u!23 &1385562023554364828
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,8 +67,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3879621958714992793, guid: 982dd2eea497ed64f969dde3aa5c2fc8, type: 3}
-  - {fileID: 4218046369211427024, guid: 982dd2eea497ed64f969dde3aa5c2fc8, type: 3}
+  - {fileID: 2100000, guid: 3a9b529aa7e69324599766cedbd3b0e0, type: 2}
+  - {fileID: 2100000, guid: addafdf40d584d14f96204d9a901127a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,3 +91,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4766934602147386273
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3209747887566721966}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: fd0f93e4e7941134285ced24ffd2f760, type: 2}

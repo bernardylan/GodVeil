@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6343820442789396739}
   - component: {fileID: 2256700290027315325}
   - component: {fileID: 1854981657977272080}
+  - component: {fileID: 5995125981709756197}
   m_Layer: 0
   m_Name: brick wall without door.001
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138430679862561569}
-  m_Mesh: {fileID: 8780011952800239810, guid: 982dd2eea497ed64f969dde3aa5c2fc8, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 99ccb71ee6995c04f9fbdb181b155fa2, type: 2}
 --- !u!23 &1854981657977272080
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -91,3 +92,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5995125981709756197
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138430679862561569}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 99ccb71ee6995c04f9fbdb181b155fa2, type: 2}

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.TextCore.Text;
 
 public class CombatManager : MonoBehaviour
 {
@@ -11,10 +10,11 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private Transform[] enemySpawnPositions;
 
     [Header("Enemy Pool")]
+    public int maxEnemy = 4;
     [SerializeField] private List<EnemyData> enemyPool = new();
 
     [Header("UI")]
-    //[SerializeField] private CombatUIManager uiManager;
+    [SerializeField] private CombatUIManager uiManager;
 
     [Header("Units")]
     public List<PlayerUnit> playerUnits = new();
@@ -33,9 +33,10 @@ public class CombatManager : MonoBehaviour
     private void Start()
     {
         SpawnPlayerUnits();
-        SpawnEnemyUnits(2);
-
-        //uiManager.Initialize(playerUnits);
+        SpawnEnemyUnits(maxEnemy);
+        SoundManager.Instance.MusicVolume(0.2f);
+        SoundManager.Instance.PlayMusicWithFade("BattleTheme", 1.5f);
+        uiManager.Initialize(playerUnits);
     }
 
     private void SpawnPlayerUnits()
@@ -45,7 +46,7 @@ public class CombatManager : MonoBehaviour
         {
             var prefab = chars[i].CurrentClass.classPrefab;
             var spawn = playerSpawnPositions[i];
-            var obj = Instantiate(prefab, spawn.position, Quaternion.identity);
+            var obj = Instantiate(prefab, spawn.position, spawn.rotation);
 
             var unit = obj.GetComponent<PlayerUnit>();
             unit.Initialize(chars[i]);
@@ -69,4 +70,5 @@ public class CombatManager : MonoBehaviour
             enemyUnits.Add(enemy);
         }
     }
+
 }

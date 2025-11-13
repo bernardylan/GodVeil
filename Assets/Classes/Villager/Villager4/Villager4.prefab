@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HpComponent
   teamID: 0
   mitigation: 0
+  currentHP: 0
 --- !u!114 &6679080272291404445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,19 +167,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUnit
   isEnemy: 0
-  atb: 0
-  atbSpeedMultiplier: 1
+  ATB: 0
+  ATBSpeedMultiplier: 1
   energy: 0
   maxEnergy: 100
   autoAttack: {fileID: 0}
   specialSkill: {fileID: 0}
   ultimateSkill: {fileID: 0}
+  hpComponent: {fileID: 0}
   characterStats:
     CurrentClass: {fileID: 0}
     EquippedWeapon: {fileID: 0}
     CurrentHP: 0
     CurrentEnergy: 0
-    IsLocked: 0
     Derived:
       BaseHP: 0
       MaxHP: 0
