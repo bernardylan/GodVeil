@@ -53,8 +53,9 @@ public class BuildingUpgrade : MonoBehaviour
         }
 
         // If yes, build
-        foreach (var cost in data.cost)
+        for(int i = 0; i < Mathf.Min(4, data.cost.Length); i++)
         {
+            var cost = data.cost[i];
             ResourceManager.Instance.TrySpend(cost.resource, cost.amount);
         }
 

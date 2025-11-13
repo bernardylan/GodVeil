@@ -19,6 +19,12 @@ MonoBehaviour:
   cost:
   - resource: {fileID: 11400000, guid: 4e9d63e7e4de7c9499a5337932e9dbb8, type: 2}
     amount: 150
+  - resource: {fileID: 11400000, guid: 87a185ebfc0370a45a09ff9f449402c8, type: 2}
+    amount: 20
+  - resource: {fileID: 11400000, guid: ed24a7bf6a1b37248b53f736e57795f8, type: 2}
+    amount: 40
+  - resource: {fileID: 11400000, guid: a43524253f2cdb64d8d44ae08c467bd0, type: 2}
+    amount: 80
   requiredBuilding: []
   unlocksNext:
   - {fileID: 11400000, guid: b96b373fea41f91458fc5a6e74be92bb, type: 2}
