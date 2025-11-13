@@ -41,6 +41,14 @@ public class HpComponent : MonoBehaviour, IHasHp
         float afterMitigation = dmg.Amount * (1f - Mathf.Clamp01(mitigation));
         currentHP = Mathf.Max(0f, currentHP - afterMitigation);
 
+        // aggro system
+        if (dmg.Attacker != null && dmg.Attacker.TryGetComponent(out CombatUnit attacker)
+        && TryGetComponent(out CombatUnit self))
+        {
+            self.GenerateAggro(attacker, afterMitigation);
+        }
+
+
         OnHPChanged?.Invoke(currentHP);
 
         if (currentHP <= 0f) HandleDeath(dmg.Attacker);

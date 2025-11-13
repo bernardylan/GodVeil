@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HpComponent
   teamID: 1
   mitigation: 0
+  currentHP: 0
 --- !u!114 &6642737899853547481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,12 +166,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cd11c0f056bf04093f74f4bbea37ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyUnit
-  isEnemy: 0
-  atb: 0
-  atbSpeedMultiplier: 50
+  isEnemy: 1
+  ATB: 0
+  ATBSpeedMultiplier: 1
   energy: 0
   maxEnergy: 100
   autoAttack: {fileID: 0}
   specialSkill: {fileID: 0}
   ultimateSkill: {fileID: 0}
+  hpComponent: {fileID: 0}
+  AggroModifier: 1
+  forcedTarget: {fileID: 0}
   enemyData: {fileID: 0}

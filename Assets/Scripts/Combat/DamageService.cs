@@ -61,7 +61,7 @@ public static class DamageService
             if (isCrit) finalDamage *= (1f + critMultiplier);
         }
 
-        finalDamage = Mathf.Max(0f, finalDamage);
+        finalDamage = Mathf.Max(1f, finalDamage);
 
         // --- Debug Logs détaillés ---
         Debug.Log(
