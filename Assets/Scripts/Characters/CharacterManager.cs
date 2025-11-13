@@ -34,10 +34,7 @@ public class CharacterManager : MonoBehaviour
     public CharacterStats AddCharacter(ClassData classData, WeaponData weapon = null)
     {
         if (characters.Count >= maxCharacters)
-        {
-            Debug.LogWarning("[CharacterManager] Maximum nb of characters have been reached");
             return null;
-        }
 
         CharacterStats newChar = new CharacterStats(classData, weapon);
         characters.Add(newChar);
