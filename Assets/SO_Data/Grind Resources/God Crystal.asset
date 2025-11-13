@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7154b45e63583384993396ff9f81727e, type: 3}
   m_Name: God Crystal
   m_EditorClassIdentifier: Assembly-CSharp::ResourcesSO
-  resourceID: r_04
+  type: 3
   displayName: God Crystal
   icon: {fileID: 6395225395225038985, guid: cbee9bf57be32c545af6d1f5c1da9868, type: 3}

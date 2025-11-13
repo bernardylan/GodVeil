@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuildingUpgrade : MonoBehaviour
@@ -33,8 +32,24 @@ public class BuildingUpgrade : MonoBehaviour
                 Debug.Log($"Not enough {cost.resource.displayName}");
                 return;
             }
+        }
 
-            
+        if (data.requiredBuilding != null)
+        {
+            foreach (var required in data.requiredBuilding)
+            {
+                if (required == null)
+                {
+                    Debug.LogWarning($"{data.displayName} has a null required building entry!");
+                    continue; // skip null entries
+                }
+
+                if (!TownManager.Instance.IsBuilt(required))
+                {
+                    Debug.Log($"Cannot build {data.displayName}, missing {required.displayName}");
+                    return;
+                }
+            }
         }
 
         // If yes, build
@@ -43,16 +58,27 @@ public class BuildingUpgrade : MonoBehaviour
             ResourceManager.Instance.TrySpend(cost.resource, cost.amount);
         }
 
+        if(!TownManager.Instance.builtBuildings.Contains(this))
+            TownManager.Instance.builtBuildings.Add(this);
+
         isBuilt = true;
         UpdateVisual();
 
         Debug.Log($"{data.displayName} built!");
     }
 
+    public bool IsBuilt => isBuilt;
+
     // Change the asset depending on destroyed or built
     private void UpdateVisual()
     {
         if (!sr) return;
+
+        Vector3 bottomWorld = sr.bounds.min;
         sr.sprite = isBuilt ? builtSprite : destroyedSprite;
+
+        Vector3 newBottomWorld = sr.bounds.min;
+        Vector3 diff = bottomWorld - newBottomWorld;
+        transform.position += diff;
     }
 }
