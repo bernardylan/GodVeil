@@ -9,8 +9,9 @@ public class BuildingSO : ScriptableObject
     public Sprite icon;
     public string description;
 
-    [Header("Cost")]
+    [Header("Requirements")]
     public ResourceAmount[] cost;
+    public BuildingSO[] requiredBuilding;
 
     [Header("Unlocks")]
     public BuildingSO[] unlocksNext;

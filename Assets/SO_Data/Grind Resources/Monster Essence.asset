@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7154b45e63583384993396ff9f81727e, type: 3}
   m_Name: Monster Essence
   m_EditorClassIdentifier: Assembly-CSharp::ResourcesSO
-  resourceID: r_02
+  type: 1
   displayName: Monster Essence
   icon: {fileID: 771779622273499393, guid: fca88a98540a7fa48b16ea1978a8e81f, type: 3}

@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a84c021c65f63fc409a48f99cbe7b298, type: 3}
-  m_Name: Archer Tower
+  m_Name: Barracks
   m_EditorClassIdentifier: Assembly-CSharp::BuildingSO
-  buildingID: b_01
-  displayName: Archer Tower
-  icon: {fileID: 1355195777722144874, guid: 7438e26ad8f82004fbc1bd5aea2b28a5, type: 3}
+  buildingID: b_02
+  displayName: Barracks
+  icon: {fileID: 5002096206624228670, guid: 8484f15b564059942abfe6bd79403a82, type: 3}
   description: 
   cost:
-  - resource: {fileID: 11400000, guid: 4e9d63e7e4de7c9499a5337932e9dbb8, type: 2}
-    amount: 150
+  - resource: {fileID: 11400000, guid: 87a185ebfc0370a45a09ff9f449402c8, type: 2}
+    amount: 0
   requiredBuilding: []
-  unlocksNext:
-  - {fileID: 11400000, guid: b96b373fea41f91458fc5a6e74be92bb, type: 2}
+  unlocksNext: []

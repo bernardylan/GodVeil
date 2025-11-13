@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7154b45e63583384993396ff9f81727e, type: 3}
   m_Name: Divine Essence
   m_EditorClassIdentifier: Assembly-CSharp::ResourcesSO
-  resourceID: r_03
+  type: 2
   displayName: Divine Essence
   icon: {fileID: 1096451412797465675, guid: d925ca8156cbc654080f165df2f08882, type: 3}
