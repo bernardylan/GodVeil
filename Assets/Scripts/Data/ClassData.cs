@@ -59,10 +59,10 @@ public static class TierUtility
 {
     public static float GetMultiplier(TierType tier) => tier switch
     {
-        TierType.T0 => 0.75f,
-        TierType.T1 => 1f,
-        TierType.T2 => 1.5f,
-        TierType.T3 => 2f,
+        TierType.T0 => 1f,
+        TierType.T1 => 1.25f,
+        TierType.T2 => 1.75f,
+        TierType.T3 => 2.25f,
         _ => 1f
     };
 }

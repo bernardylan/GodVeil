@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(HpComponent))]
 public class PlayerUnit : CombatUnit
