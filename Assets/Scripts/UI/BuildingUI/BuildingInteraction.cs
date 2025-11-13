@@ -39,9 +39,6 @@ public class BuildingInteraction : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         if (upgrade == null) return;
 
-        if (!upgrade.IsBuilt)
-            upgrade.TryBuild();
-        else
-            Debug.Log($"{upgrade.data.displayName} already built.");
+        UpgradeWindow.Instance?.ShowUpgradeWindow(upgrade);
     }
 }
