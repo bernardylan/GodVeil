@@ -2734,7 +2734,7 @@ Transform:
   m_GameObject: {fileID: 242111411}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 6.25, y: 0.1, z: 15.5}
+  m_LocalPosition: {x: 5.6, y: 0.1, z: 15.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6678,7 +6678,7 @@ Transform:
   m_GameObject: {fileID: 521243093}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 6.25, y: 0.1, z: 9.5}
+  m_LocalPosition: {x: 8, y: 0.1, z: 9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10608,8 +10608,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ba551db25f9f394ebbb5a0842645066, type: 2}
   - {fileID: 11400000, guid: 0ba551db25f9f394ebbb5a0842645066, type: 2}
   uiManager: {fileID: 1094634295}
+  hpBarPrefab: {fileID: 2636986138399168238, guid: a3f42ce98082ce94b828e578112a7211, type: 3}
   playerUnits: []
   enemyUnits: []
+  offset: {x: -1, y: 1.5, z: 0}
+  target: {fileID: 0}
 --- !u!4 &853761254
 Transform:
   m_ObjectHideFlags: 0
@@ -26027,7 +26030,7 @@ Transform:
   m_GameObject: {fileID: 2061850415}
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 6.25, y: 0.1, z: 3.5}
+  m_LocalPosition: {x: 3.9, y: 0.1, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -92,7 +92,6 @@ public abstract class CombatUnit : MonoBehaviour
             aggroTable[attacker] = 0f;
 
         aggroTable[attacker] += amount * attacker.AggroModifier;
-        Debug.Log($"{name} a maintenant {aggroTable[attacker]} aggro contre {attacker.name}");
     }
 
     public void UpdateForcedTarget(float deltaTime)

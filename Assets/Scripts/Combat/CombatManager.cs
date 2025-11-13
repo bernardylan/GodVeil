@@ -15,10 +15,14 @@ public class CombatManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private CombatUIManager uiManager;
+    [SerializeField] private GameObject hpBarPrefab;
 
     [Header("Units")]
     public List<PlayerUnit> playerUnits = new();
     public List<EnemyUnit> enemyUnits = new();
+
+    public Vector3 offset;
+    public Transform target;
 
     private void Awake()
     {
@@ -66,6 +70,14 @@ public class CombatManager : MonoBehaviour
             var obj = Instantiate(data.prefab, spawn.position, spawn.rotation);
             var enemy = obj.GetComponent<EnemyUnit>();
             enemy.Initialize(data);
+            enemy.hpComponent = enemy.GetComponent<HpComponent>();
+            Vector3 barSpawn = enemy.transform.position + offset;
+            var hpBarObj = Instantiate(hpBarPrefab, barSpawn, Quaternion.identity);
+            var barScript = hpBarObj.GetComponent<WorldSpaceUnitUI>();
+            barScript.hpComponent = enemy.hpComponent;
+            barScript.target = enemy.transform;
+            barScript.offset = offset;
+            barScript.GetComponent<Canvas>().worldCamera = Camera.main;
 
             enemyUnits.Add(enemy);
         }
