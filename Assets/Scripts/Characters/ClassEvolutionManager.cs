@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ClassEvolutionManager : MonoBehaviour
 {
+    [Header("Class Pools")]
     [SerializeField] private ClassData[] tier1Classes;
     [SerializeField] private ClassData[] tier2Classes;
     [SerializeField] private ClassData[] tier3Classes;
+
+    [Header("UI")]
     [SerializeField] private ClassEvolutionUI[] panels;
 
     private int currentSlotIndex = 0;
@@ -19,7 +23,7 @@ public class ClassEvolutionManager : MonoBehaviour
             int randomSlot = Random.Range(0, CharacterManager.Instance.Characters.Count);
             SetTargetSlot(randomSlot);
 
-            ShowEvolutionsOptions();
+            ShowEvolutionOptions();
         }
     }
 
@@ -28,22 +32,44 @@ public class ClassEvolutionManager : MonoBehaviour
         currentSlotIndex = Mathf.Clamp(index, 0, CharacterManager.Instance.Characters.Count - 1);
     }
 
-    public void ShowEvolutionsOptions()
+    public void ShowEvolutionOptions()
     {
-        var options = GetRandomClasses(tier1Classes, panels.Length);
+        var character = CharacterManager.Instance.Characters[currentSlotIndex];
 
-        for (int i = 0; i < panels.Length; i++)
+        TierType currentTier = character.CurrentClass.tier;
+        ClassData[] pool = GetNextTierClasses(currentTier);
+
+        // Filtrer avec requirements
+        List<ClassData> validClasses = pool
+            .Where(c => c.MeetsRequirements(character))
+            .ToList();
+
+        // Si aucune classe valide => fallback (au moins 1)
+        if (validClasses.Count == 0)
+            validClasses = pool.ToList();
+
+        // Prendre un subset random
+        var options = GetRandomSubset(validClasses, panels.Length);
+
+        // Injecter dans l'UI
+        for (int i = 0; i < options.Count; i++)
             panels[i].Initialize(options[i], OnClassSelected);
     }
 
-    private void OnClassSelected(ClassData selectedClass)
+    private ClassData[] GetNextTierClasses(TierType tier)
     {
-        CharacterManager.Instance.EvolveCharacter(currentSlotIndex, selectedClass);
+        return tier switch
+        {
+            TierType.T0 => tier1Classes,
+            TierType.T1 => tier2Classes,
+            TierType.T2 => tier3Classes,
+            _ => tier3Classes
+        };
     }
 
-    private static ClassData[] GetRandomClasses(ClassData[] available, int count)
+    private List<ClassData> GetRandomSubset(List<ClassData> list, int count)
     {
-        List<ClassData> pool = new(available);
+        List<ClassData> pool = new(list);
         List<ClassData> result = new();
 
         for (int i = 0; i < count && pool.Count > 0; i++)
@@ -53,6 +79,11 @@ public class ClassEvolutionManager : MonoBehaviour
             pool.RemoveAt(index);
         }
 
-        return result.ToArray();
+        return result;
+    }
+
+    private void OnClassSelected(ClassData selectedClass)
+    {
+        CharacterManager.Instance.EvolveCharacter(currentSlotIndex, selectedClass);
     }
 }

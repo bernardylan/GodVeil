@@ -17,6 +17,15 @@ MonoBehaviour:
   classPrefab: {fileID: 0}
   tier: 1
   isLocked: 0
+  statRequirements:
+  - stat: 0
+    minimum: 0.3
+  - stat: 1
+    minimum: 0
+  - stat: 2
+    minimum: 0
+  - stat: 3
+    minimum: 0
   baseHP: 500
   baseDefense: 0.05
   baseCritRate: 0.05

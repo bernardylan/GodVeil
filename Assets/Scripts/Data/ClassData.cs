@@ -10,6 +10,40 @@ public class ClassData : ScriptableObject
     public TierType tier;
     public bool isLocked = false;
 
+    [Header("Stat Requirements")]
+    [Tooltip("Stats needed for unlock a class")]
+    public StatRequirement[] statRequirements;
+    public bool MeetsRequirements(CharacterStats character)
+    {
+        if (statRequirements == null || statRequirements.Length == 0)
+            return true; // Classe available without any requirments
+
+        var prof = character.GetClassProficiencies();
+
+        foreach (var req in statRequirements)
+        {
+            if (!prof.TryGetValue(req.stat, out float value))
+                return false;
+
+            if (value < req.minimum)
+                return false;
+        }
+
+        return true;
+    }
+    private void OnValidate()
+    {
+        if (statRequirements == null) return;
+
+        for (int i = 0; i < statRequirements.Length; i++)
+        {
+            var req = statRequirements[i];
+            req.minimum = Mathf.Round(req.minimum * 10f) / 10f; // Snap 
+            statRequirements[i] = req;
+        }
+    }
+
+
     [Header("Base Stats")]
     public float baseHP = 500f;
     public float baseDefense = 0.05f;

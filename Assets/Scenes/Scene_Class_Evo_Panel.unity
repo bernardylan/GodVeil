@@ -3218,6 +3218,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: maxCharacters
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'defaultT0Classes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a8a30240863ab14fa2465e3d47ba4b4, type: 2}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'defaultT0Classes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d68b7f47479652047889ea7c03bde88f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
