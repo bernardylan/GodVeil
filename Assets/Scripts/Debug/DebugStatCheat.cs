@@ -22,11 +22,17 @@ public class DebugStatCheat : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
             evoManager.DebugBanCurrentOptions();
+
+        if (Input.GetKeyDown(KeyCode.N)) // Reset complet pour test
+        {
+            CharacterManager.Instance.ResetAllCharactersForNewRun();
+            Debug.Log("[DEBUG] RESET FULL RUN.");
+        }
     }
 
     private void AddStat(StatType stat)
     {
-        var prof = current.CurrentClass.proficiencies.stats;
+        var prof = current.RuntimeProficiencies;
 
         for (int i = 0; i < prof.Length; i++)
         {

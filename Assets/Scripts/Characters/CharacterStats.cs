@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 [System.Serializable]
 public class CharacterStats
@@ -13,7 +14,12 @@ public class CharacterStats
 
     public DerivedStats Derived;
 
-    public event Action OnStatsChanged;
+    public float modifiedProficiency; // Valeur dynamique pendant la run
+
+    private RuntimeProficiency[] originalProficiencies;
+    public RuntimeProficiency[] RuntimeProficiencies;
+
+    public event Action<CharacterStats> OnStatsChanged;
 
     // Scaling coefficients
     private const float HPScaling = 0.5f;
@@ -27,14 +33,38 @@ public class CharacterStats
     {
         CurrentClass = classData;
         EquippedWeapon = weapon;
+
+        // clone des proficiencies
+        RuntimeProficiencies = new RuntimeProficiency[classData.proficiencies.stats.Length];
+        
+        // Clone de backup, jamais modifié
+        originalProficiencies = new RuntimeProficiency[classData.proficiencies.stats.Length];
+
+        for (int i = 0; i < RuntimeProficiencies.Length; i++)
+        {
+            var s = classData.proficiencies.stats[i];
+
+            RuntimeProficiencies[i] = new RuntimeProficiency(s.type, s.proficiency);
+            originalProficiencies[i] = new RuntimeProficiency(s.type, s.proficiency);
+        }
+
         RecalculateDerivedStats();
         CurrentHP = Derived.MaxHP;
         CurrentEnergy = Derived.EnergyRegen;
     }
 
+    public void ResetStatsForRun()
+    {
+        for (int i = 0; i < RuntimeProficiencies.Length; i++)
+        {
+            RuntimeProficiencies[i].proficiency = originalProficiencies[i].proficiency;
+        }
+        modifiedProficiency = 0f;
+    }
+
     public void RecalculateDerivedStats()
     {
-        var prof = CurrentClass.proficiencies;
+        var prof = this;
 
         Derived = new DerivedStats
         {
@@ -46,7 +76,16 @@ public class CharacterStats
             EnergyRegen = CurrentClass.baseEnergyRegen * EnergyScaling * prof.GetProficiency(StatType.Intelligence),
             Speed = CurrentClass.baseSpeed * prof.GetProficiency(StatType.Speed)
         };
-        OnStatsChanged?.Invoke();
+        OnStatsChanged?.Invoke(this);
+    }
+
+    public float GetProficiency(StatType type)
+    {
+        foreach (var r in RuntimeProficiencies)
+            if (r.type == type)
+                return r.proficiency;
+
+        return 0f;
     }
 
     // Return a dictionary for all main stats

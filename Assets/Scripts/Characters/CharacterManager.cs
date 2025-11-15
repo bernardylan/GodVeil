@@ -31,6 +31,16 @@ public class CharacterManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    public void ResetAllCharactersForNewRun()
+    {
+        foreach (var character in Characters)
+        {
+            character.ResetStatsForRun();
+            character.RecalculateDerivedStats();
+        }
+        ClassEvolutionManager.Instance.ClearPanels();
+    }
+
     public CharacterStats AddCharacter(ClassData classData, WeaponData weapon = null)
     {
         if (characters.Count >= maxCharacters)
@@ -41,11 +51,6 @@ public class CharacterManager : MonoBehaviour
 
         Debug.Log($"[CharacterManager] New character added : {classData.className}");
         return newChar;
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void RecalculateAllCharacters()

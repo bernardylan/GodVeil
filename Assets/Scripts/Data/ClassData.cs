@@ -16,21 +16,19 @@ public class ClassData : ScriptableObject
     public bool MeetsRequirements(CharacterStats character)
     {
         if (statRequirements == null || statRequirements.Length == 0)
-            return true; // Classe available without any requirments
-
-        var prof = character.GetClassProficiencies();
+            return true;
 
         foreach (var req in statRequirements)
         {
-            if (!prof.TryGetValue(req.stat, out float value))
-                return false;
+            float currentValue = character.GetProficiency(req.stat); // RUNTIME VALUE
 
-            if (value < req.minimum)
+            if (currentValue < req.minimum)
                 return false;
         }
 
         return true;
     }
+
     private void OnValidate()
     {
         if (statRequirements == null) return;
