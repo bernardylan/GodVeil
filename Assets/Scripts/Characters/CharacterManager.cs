@@ -43,6 +43,11 @@ public class CharacterManager : MonoBehaviour
         return newChar;
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void RecalculateAllCharacters()
     {
         foreach (var c in characters)

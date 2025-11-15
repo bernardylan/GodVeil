@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 [System.Serializable]
 public class CharacterStats
@@ -11,6 +12,8 @@ public class CharacterStats
     public float CurrentEnergy;
 
     public DerivedStats Derived;
+
+    public event Action OnStatsChanged;
 
     // Scaling coefficients
     private const float HPScaling = 0.5f;
@@ -43,6 +46,7 @@ public class CharacterStats
             EnergyRegen = CurrentClass.baseEnergyRegen * EnergyScaling * prof.GetProficiency(StatType.Intelligence),
             Speed = CurrentClass.baseSpeed * prof.GetProficiency(StatType.Speed)
         };
+        OnStatsChanged?.Invoke();
     }
 
     // Return a dictionary for all main stats

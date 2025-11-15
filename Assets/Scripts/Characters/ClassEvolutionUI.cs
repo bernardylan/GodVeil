@@ -16,6 +16,8 @@ public class ClassEvolutionUI : MonoBehaviour
     [SerializeField] private Transform characterSlot;
 
     private ClassData currentClass;
+    public ClassData CurrentClass => currentClass;
+
     private Action<ClassData> onSelect;
 
     private void Clear(Transform parent)
