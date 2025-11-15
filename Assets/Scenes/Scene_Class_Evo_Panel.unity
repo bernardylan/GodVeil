@@ -518,6 +518,10 @@ PrefabInstance:
       propertyPath: 'defaultT0Classes.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: d68b7f47479652047889ea7c03bde88f, type: 2}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'defaultT0Classes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 509f5408fc256fa40a966a303a6136a4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -531,6 +535,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 760141434762347, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1337333091611180382, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -538,6 +546,18 @@ PrefabInstance:
     - target: {fileID: 1337333091611180382, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494178859929672609, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494178859929672609, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6951427195760021436, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8826944484071002674, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
       propertyPath: m_Name
@@ -620,6 +640,30 @@ PrefabInstance:
       propertyPath: 'panels.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4667436593868151167, guid: dc2de7b361139be4a863ece7179de230, type: 3}
+      propertyPath: tier1Classes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667436593868151167, guid: dc2de7b361139be4a863ece7179de230, type: 3}
+      propertyPath: tier2Classes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667436593868151167, guid: dc2de7b361139be4a863ece7179de230, type: 3}
+      propertyPath: 'tier1Classes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f8c0be4c84739dc4e81f510a7560fd62, type: 2}
+    - target: {fileID: 4667436593868151167, guid: dc2de7b361139be4a863ece7179de230, type: 3}
+      propertyPath: 'tier1Classes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8fb8585710a62704d99df0974e6cf9ca, type: 2}
+    - target: {fileID: 4667436593868151167, guid: dc2de7b361139be4a863ece7179de230, type: 3}
+      propertyPath: 'tier1Classes.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a7cd75e65f96b674c8c91adc3182a9de, type: 2}
+    - target: {fileID: 4667436593868151167, guid: dc2de7b361139be4a863ece7179de230, type: 3}
+      propertyPath: 'tier2Classes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a7cd75e65f96b674c8c91adc3182a9de, type: 2}
     - target: {fileID: 6051925192555237836, guid: dc2de7b361139be4a863ece7179de230, type: 3}
       propertyPath: m_Name
       value: ClassEvolutionManager
@@ -709,8 +753,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4015095912611580557}
   - component: {fileID: 8999973184275278193}
+  - component: {fileID: 8999973184275278196}
   - component: {fileID: 8999973184275278194}
   - component: {fileID: 6352626596344068858}
+  - component: {fileID: 8999973184275278195}
+  - component: {fileID: 8999973184275278197}
   m_Layer: 5
   m_Name: Container
   m_TagString: Untagged
@@ -735,7 +782,7 @@ Canvas:
   m_GameObject: {fileID: 7996428918997577078}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 828845717}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -746,9 +793,61 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -2129334773
+  m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!225 &8999973184275278195
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996428918997577078}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8999973184275278196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996428918997577078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.5
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!114 &8999973184275278197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996428918997577078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

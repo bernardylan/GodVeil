@@ -28,6 +28,7 @@ public class TooltipManager : MonoBehaviour
             Instance = this;
             canvasRect = canvas.GetComponent<RectTransform>();
             HideInstant();
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

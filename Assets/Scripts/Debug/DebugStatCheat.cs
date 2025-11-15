@@ -4,7 +4,7 @@ public class DebugStatCheat : MonoBehaviour
 {
     [SerializeField] private ClassEvolutionManager evoManager;
 
-    private CharacterStats current => CharacterManager.Instance.Characters[evoManager.CurrentSlotIndex];
+     private CharacterStats current => CharacterManager.Instance.Characters[evoManager.CurrentSlotIndex];
 
     private void Update()
     {

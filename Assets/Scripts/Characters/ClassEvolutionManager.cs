@@ -23,7 +23,7 @@ public class ClassEvolutionManager : MonoBehaviour
 
     // Stockage des panels actuels
     private List<ClassEvolutionUI> activePanels = new();
-    private HashSet<ClassData> bannedClasses = new();
+    public HashSet<ClassData> bannedClasses = new();
 
     int maxOptions = 3;
 
@@ -96,7 +96,7 @@ public class ClassEvolutionManager : MonoBehaviour
 
         // Si aucune classe valide => fallback
         if (validClasses.Count == 0)
-            validClasses = pool.ToList();        // Aucun panel → pas de requirements atteints
+            return;
         Debug.Log("Valid classes count = " + validClasses.Count);
 
         var options = GetRandomSubset(validClasses, maxOptions); // Par exemple 3 panels
@@ -161,7 +161,7 @@ public class ClassEvolutionManager : MonoBehaviour
         return result;
     }
 
-    private void OnClassSelected(ClassData selectedClass)
+    public void OnClassSelected(ClassData selectedClass)
     {
         CharacterManager.Instance.EvolveCharacter(currentSlotIndex, selectedClass);
     }

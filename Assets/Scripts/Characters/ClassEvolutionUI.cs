@@ -85,6 +85,7 @@ public class ClassEvolutionUI : MonoBehaviour
 
         EventTrigger trigger = go.GetComponent<EventTrigger>();
         if (!trigger) trigger = go.AddComponent<EventTrigger>();
+        trigger.triggers.Clear();
 
         // PointerEnter -> show tooltip
         var entryEnter = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
