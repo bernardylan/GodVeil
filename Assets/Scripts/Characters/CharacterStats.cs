@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
+/// <summary>
+/// Complete CharacterStats implementation with runtime proficiencies, derived stats recalculation,
+/// event when stats change and helper accessors for proficiencies.
+/// Replace your previous CharacterStats with this file (it contains the usual methods the rest of code expects).
+/// </summary>
 [System.Serializable]
 public class CharacterStats
 {
@@ -14,10 +19,10 @@ public class CharacterStats
 
     public DerivedStats Derived;
 
-    public float modifiedProficiency; // Valeur dynamique pendant la run
-
     private RuntimeProficiency[] originalProficiencies;
     public RuntimeProficiency[] RuntimeProficiencies;
+
+    [NonSerialized] public CharacterClassState classState;
 
     public event Action<CharacterStats> OnStatsChanged;
 
@@ -34,77 +39,156 @@ public class CharacterStats
         CurrentClass = classData;
         EquippedWeapon = weapon;
 
-        // clone des proficiencies
-        RuntimeProficiencies = new RuntimeProficiency[classData.proficiencies.stats.Length];
-        
-        // Clone de backup, jamais modifié
-        originalProficiencies = new RuntimeProficiency[classData.proficiencies.stats.Length];
+        // Initialize runtime proficiencies by cloning the class profile
+        InitializeRuntimeProficiencies();
 
-        for (int i = 0; i < RuntimeProficiencies.Length; i++)
-        {
-            var s = classData.proficiencies.stats[i];
-
-            RuntimeProficiencies[i] = new RuntimeProficiency(s.type, s.proficiency);
-            originalProficiencies[i] = new RuntimeProficiency(s.type, s.proficiency);
-        }
+        // initialize character class state placeholder (will be overwritten by manager)
+        classState = new CharacterClassState();
 
         RecalculateDerivedStats();
         CurrentHP = Derived.MaxHP;
         CurrentEnergy = Derived.EnergyRegen;
     }
 
-    public void ResetStatsForRun()
+    private void InitializeRuntimeProficiencies()
     {
-        for (int i = 0; i < RuntimeProficiencies.Length; i++)
+        if (CurrentClass?.proficiencies?.stats == null)
         {
-            RuntimeProficiencies[i].proficiency = originalProficiencies[i].proficiency;
+            RuntimeProficiencies = new RuntimeProficiency[0];
+            return;
         }
-        modifiedProficiency = 0f;
+
+        var src = CurrentClass.proficiencies.stats;
+        RuntimeProficiencies = new RuntimeProficiency[src.Length];
+        for (int i = 0; i < src.Length; i++)
+            RuntimeProficiencies[i] = new RuntimeProficiency(src[i].type, src[i].proficiency);
     }
 
-    public void RecalculateDerivedStats()
+    /// <summary>
+    /// Reset dynamic runtime proficiencies for a new run.
+    /// Keep base class proficiencies untouched.
+    /// </summary>
+    public void ResetProficienciesForRun()
     {
-        var prof = this;
+        if (RuntimeProficiencies == null) InitializeRuntimeProficiencies();
 
-        Derived = new DerivedStats
-        {
-            MaxHP = CurrentClass.baseHP * HPScaling * (1 + prof.GetProficiency(StatType.Strength)),
-            Defense = CurrentClass.baseDefense * DefenseScaling * prof.GetProficiency(StatType.Strength),
-            CritRate = CurrentClass.baseCritRate * CritScaling * prof.GetProficiency(StatType.Dexterity),
-            Dodge = CurrentClass.baseDodge * DodgeScaling * prof.GetProficiency(StatType.Dexterity),
-            HitChance = CurrentClass.baseHitChance * HitScaling * prof.GetProficiency(StatType.Intelligence),
-            EnergyRegen = CurrentClass.baseEnergyRegen * EnergyScaling * prof.GetProficiency(StatType.Intelligence),
-            Speed = CurrentClass.baseSpeed * prof.GetProficiency(StatType.Speed)
-        };
-        OnStatsChanged?.Invoke(this);
+        for (int i = 0; i < RuntimeProficiencies.Length; i++)
+            RuntimeProficiencies[i].proficiency = Mathf.Round(RuntimeProficiencies[i].proficiency * 10f) / 10f; // keep snapped base
     }
 
+    /// <summary>
+    /// Public accessor: returns the current runtime proficiency (0-1).
+    /// If runtime profs not initialized, fallback to class profile.
+    /// </summary>
     public float GetProficiency(StatType type)
     {
-        foreach (var r in RuntimeProficiencies)
-            if (r.type == type)
-                return r.proficiency;
-
+        if (RuntimeProficiencies != null)
+        {
+            for (int i = 0; i < RuntimeProficiencies.Length; i++)
+                if (RuntimeProficiencies[i].type == type)
+                    return Mathf.Clamp01(RuntimeProficiencies[i].proficiency);
+        }
         return 0f;
     }
 
-    // Return a dictionary for all main stats
-    public Dictionary<StatType, float> GetClassProficiencies()
+    /// <summary>
+    /// Recalculate derived stats from current class + runtime proficiencies.
+    /// </summary>
+    public void RecalculateDerivedStats()
+    {
+        // Use GetProficiency to read runtime (or class fallback)
+        float str = GetProficiency(StatType.Strength);
+        float dex = GetProficiency(StatType.Dexterity);
+        float intel = GetProficiency(StatType.Intelligence);
+        float spd = GetProficiency(StatType.Speed);
+
+        Derived = new DerivedStats
+        {
+            MaxHP = (CurrentClass != null ? CurrentClass.baseHP : 500f) * HPScaling * (1f + str),
+            Defense = (CurrentClass != null ? CurrentClass.baseDefense : 0.05f) * DefenseScaling * str,
+            CritRate = (CurrentClass != null ? CurrentClass.baseCritRate : 0.05f) * CritScaling * dex,
+            Dodge = (CurrentClass != null ? CurrentClass.baseDodge : 0.05f) * DodgeScaling * dex,
+            HitChance = (CurrentClass != null ? CurrentClass.baseHitChance : 0.85f) * HitScaling * intel,
+            EnergyRegen = (CurrentClass != null ? CurrentClass.baseEnergyRegen : 1f) * EnergyScaling * intel,
+            Speed = (CurrentClass != null ? CurrentClass.baseSpeed : 1f) * spd
+        };
+
+        OnStatsChanged?.Invoke(this);
+    }
+
+    /// <summary>
+    /// Returns a dictionary with the current runtime proficiencies for main stats (STR/DEX/INT/SPEED).
+    /// Useful for DamageService which expects a dict.
+    /// </summary>
+    public Dictionary<StatType, float> GetClassProficienciesDict()
     {
         var dict = new Dictionary<StatType, float>();
-        foreach (var stat in CurrentClass.proficiencies.stats)
-            dict[stat.type] = stat.proficiency;
+
+        // ensure runtime profs exist
+        if (RuntimeProficiencies != null)
+        {
+            foreach (var r in RuntimeProficiencies)
+                dict[r.type] = Mathf.Clamp01(r.proficiency);
+        }
+        else if (CurrentClass != null && CurrentClass.proficiencies != null)
+        {
+            foreach (var s in CurrentClass.proficiencies.stats)
+                dict[s.type] = Mathf.Clamp01(s.proficiency);
+        }
+
+        // fill missing keys with 0
+        foreach (StatType t in Enum.GetValues(typeof(StatType)))
+            if (!dict.ContainsKey(t)) dict[t] = 0f;
+
         return dict;
     }
 
-    public Dictionary<StatType, float> GetWeaponProficiencies()
+    /// <summary>
+    /// Weapon proficiencies dictionary (falls back to empty if no weapon).
+    /// </summary>
+    public Dictionary<StatType, float> GetWeaponProficienciesDict()
     {
         var dict = new Dictionary<StatType, float>();
-        if (EquippedWeapon == null) return dict;
+        if (EquippedWeapon == null || EquippedWeapon.proficiencies == null || EquippedWeapon.proficiencies.stats == null)
+        {
+            // fill zeros
+            foreach (StatType t in Enum.GetValues(typeof(StatType)))
+                dict[t] = 0f;
+            return dict;
+        }
 
-        foreach (var stat in EquippedWeapon.proficiencies.stats)
-            dict[stat.type] = stat.proficiency;
+        foreach (var s in EquippedWeapon.proficiencies.stats)
+            dict[s.type] = Mathf.Clamp01(s.proficiency);
+
+        foreach (StatType t in Enum.GetValues(typeof(StatType)))
+            if (!dict.ContainsKey(t)) dict[t] = 0f;
 
         return dict;
+    }
+
+    /// <summary>
+    /// Helper used by UI/debug to add runtime proficiency (e.g. +0.1).
+    /// Clamps and snaps to 0.1 increments.
+    /// </summary>
+    public void AddRuntimeProficiency(StatType type, float amount)
+    {
+        if (RuntimeProficiencies == null) InitializeRuntimeProficiencies();
+
+        for (int i = 0; i < RuntimeProficiencies.Length; i++)
+        {
+            if (RuntimeProficiencies[i].type == type)
+            {
+                RuntimeProficiencies[i].proficiency = Mathf.Clamp01(RuntimeProficiencies[i].proficiency + amount);
+                // snap to tenth
+                RuntimeProficiencies[i].proficiency = Mathf.Round(RuntimeProficiencies[i].proficiency * 10f) / 10f;
+                RecalculateDerivedStats();
+                return;
+            }
+        }
+
+        // if not found, add one
+        Array.Resize(ref RuntimeProficiencies, (RuntimeProficiencies?.Length ?? 0) + 1);
+        RuntimeProficiencies[RuntimeProficiencies.Length - 1] = new RuntimeProficiency(type, Mathf.Clamp01(amount));
+        RecalculateDerivedStats();
     }
 }

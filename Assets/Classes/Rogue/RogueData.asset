@@ -15,8 +15,9 @@ MonoBehaviour:
   className: CLASS_ROGUE
   classIcon: {fileID: 21300000, guid: ab7628035d250324f88aefe40efe67f6, type: 3}
   classPrefab: {fileID: 7198852199442753240, guid: dd972d428aec5394c9d3341973b8efaf, type: 3}
-  tier: 1
+  tier: 2
   isLocked: 0
+  nextTierClasses: []
   statRequirements:
   - stat: 0
     minimum: 0

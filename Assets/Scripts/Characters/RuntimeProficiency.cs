@@ -1,14 +1,16 @@
+using System;
+using UnityEngine;
 
-
-[System.Serializable]
+[Serializable]
 public class RuntimeProficiency
 {
     public StatType type;
     public float proficiency;
 
-    public RuntimeProficiency(StatType type, float value)
+    public RuntimeProficiency(StatType t, float p)
     {
-        this.type = type;
-        this.proficiency = value;
+        type = t;
+        proficiency = Mathf.Clamp01(p);
     }
 }
+

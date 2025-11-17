@@ -10,6 +10,9 @@ public class ClassData : ScriptableObject
     public TierType tier;
     public bool isLocked = false;
 
+    [Header("Next Tier Classes")]
+    public ClassData[] nextTierClasses; // pour T2/T3
+
     [Header("Stat Requirements")]
     [Tooltip("Stats needed for unlock a class")]
     public StatRequirement[] statRequirements;

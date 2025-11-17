@@ -511,6 +511,26 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: baseT1Pool.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'baseT1Pool.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8fb8585710a62704d99df0974e6cf9ca, type: 2}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'baseT1Pool.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f8c0be4c84739dc4e81f510a7560fd62, type: 2}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'baseT1Pool.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b8afa206fcd9e354bb96e4b3203bad35, type: 2}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'baseT1Pool.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a7cd75e65f96b674c8c91adc3182a9de, type: 2}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
       propertyPath: 'defaultT0Classes.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 3a8a30240863ab14fa2465e3d47ba4b4, type: 2}

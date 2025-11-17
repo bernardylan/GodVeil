@@ -7,25 +7,18 @@ public class ClassEvolutionManager : MonoBehaviour
 {
     public static ClassEvolutionManager Instance { get; private set; }
 
-    [Header("Class Pools")]
-    [SerializeField] private ClassData[] tier1Classes;
-    [SerializeField] private ClassData[] tier2Classes;
-    [SerializeField] private ClassData[] tier3Classes;
-
     [Header("UI")]
     [SerializeField] private Transform container;
     [SerializeField] private ClassEvolutionUI panelPrefab;
 
-    //private CharacterStats currentCharacter;
-
-    private int currentSlotIndex = 0;
-    public int CurrentSlotIndex => currentSlotIndex;
+    [Header("Options")]
+    [SerializeField]
+    private int maxOptions = 3;
 
     // Stockage des panels actuels
     private List<ClassEvolutionUI> activePanels = new();
-    public HashSet<ClassData> bannedClasses = new();
-
-    int maxOptions = 3;
+    private int currentSlotIndex = 0;
+    public int CurrentSlotIndex => currentSlotIndex;
 
     private void Awake()
     {
@@ -39,14 +32,24 @@ public class ClassEvolutionManager : MonoBehaviour
 
     private void OnEnable()
     {
+        if (CharacterManager.Instance == null) return;
         foreach (var character in CharacterManager.Instance.Characters)
-            character.OnStatsChanged += OnCharacterStatsChanged;
+            RegisterCharacterForStats(character);
     }
 
     private void OnDisable()
     {
+        if (CharacterManager.Instance == null) return;
         foreach (var character in CharacterManager.Instance.Characters)
             character.OnStatsChanged -= OnCharacterStatsChanged;
+    }
+
+
+    public void RegisterCharacterForStats(CharacterStats character)
+    {
+        if (character == null) return;
+        character.OnStatsChanged -= OnCharacterStatsChanged; // safe unsubscribe
+        character.OnStatsChanged += OnCharacterStatsChanged;
     }
 
     public void SetTargetSlot(int index)
@@ -82,26 +85,18 @@ public class ClassEvolutionManager : MonoBehaviour
 
     public void ShowEvolutionOptions()
     {
-        Debug.Log("[CLASS EVO] ShowEvolutionOptions() CALLED");
+        ClearPanels();
 
         var character = CharacterManager.Instance.Characters[currentSlotIndex];
 
-        TierType currentTier = character.CurrentClass.tier;
-        ClassData[] pool = GetNextTierClasses(currentTier);
-
-        // Filtrer avec requirements
-        List<ClassData> validClasses = pool
-            .Where(c => c.MeetsRequirements(character))
-            .ToList();
+        var validClasses = ClassEvolutionService.GetValidClassesForCharacter(character);
 
         // Si aucune classe valide => fallback
         if (validClasses.Count == 0)
             return;
         Debug.Log("Valid classes count = " + validClasses.Count);
 
-        var options = GetRandomSubset(validClasses, maxOptions); // Par exemple 3 panels
-
-        ClearPanels();
+        var options = ClassEvolutionService.GetRandomSubset(validClasses, maxOptions); // Par exemple 3 panels
 
         foreach (var classData in options)
         {
@@ -127,42 +122,22 @@ public class ClassEvolutionManager : MonoBehaviour
 
     public void DebugBanCurrentOptions()
     {
+        var character = CharacterManager.Instance.Characters[currentSlotIndex];
         foreach (var panel in activePanels)
-            bannedClasses.Add(panel.CurrentClass);
+            ClassEvolutionService.BanClassForCharacter(character, panel.CurrentClass);
 
         Debug.Log("[DEBUG] Banned current options");
         ShowEvolutionOptions();
     }
 
-
-    private ClassData[] GetNextTierClasses(TierType tier)
+    private void OnClassSelected(ClassData selectedClass)
     {
-        return tier switch
-        {
-            TierType.T0 => tier1Classes,
-            TierType.T1 => tier2Classes,
-            TierType.T2 => tier3Classes,
-            _ => tier3Classes
-        };
-    }
+        var character = CharacterManager.Instance.Characters[currentSlotIndex];
+        int nextTier = (int)selectedClass.tier;
+        ClassEvolutionService.PickClassAndAdvance(character, selectedClass, nextTier);
 
-    private List<ClassData> GetRandomSubset(List<ClassData> list, int count)
-    {
-        List<ClassData> pool = new(list);
-        List<ClassData> result = new();
+        Debug.Log($"[ClassEvolutionManager] Character {currentSlotIndex} picked {selectedClass.className} (Tier {nextTier})");
 
-        for (int i = 0; i < count && pool.Count > 0; i++)
-        {
-            int index = Random.Range(0, pool.Count);
-            result.Add(pool[index]);
-            pool.RemoveAt(index);
-        }
-
-        return result;
-    }
-
-    public void OnClassSelected(ClassData selectedClass)
-    {
-        CharacterManager.Instance.EvolveCharacter(currentSlotIndex, selectedClass);
+        ShowEvolutionOptions(); // mettre à jour UI pour prochaine tier
     }
 }

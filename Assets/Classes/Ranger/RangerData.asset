@@ -17,11 +17,13 @@ MonoBehaviour:
   classPrefab: {fileID: 5124771186310826568, guid: a51a73a6a48f9034c835310272ee3889, type: 3}
   tier: 1
   isLocked: 0
+  nextTierClasses:
+  - {fileID: 11400000, guid: f8c0be4c84739dc4e81f510a7560fd62, type: 2}
   statRequirements:
   - stat: 0
     minimum: 0
   - stat: 1
-    minimum: 0.3
+    minimum: 0.5
   - stat: 2
     minimum: 0
   - stat: 3

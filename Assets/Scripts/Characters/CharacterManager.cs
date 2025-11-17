@@ -15,6 +15,11 @@ public class CharacterManager : MonoBehaviour
     [Header("Classes T0 available")]
     [SerializeField] private List<ClassData> defaultT0Classes = new(); // Villager1..4
 
+    [Header("Starting T1 pool")]
+    [SerializeField] private List<ClassData> baseT1Pool = new();
+    [Header("Starting T2 pool")]
+    [SerializeField] private List<ClassData> baseT2Pool = new();
+
     private void Awake()
     {
         if (Instance == null)
@@ -35,7 +40,7 @@ public class CharacterManager : MonoBehaviour
     {
         foreach (var character in Characters)
         {
-            character.ResetStatsForRun();
+            character.ResetProficienciesForRun();
             character.RecalculateDerivedStats();
         }
         ClassEvolutionManager.Instance.ClearPanels();
@@ -47,7 +52,14 @@ public class CharacterManager : MonoBehaviour
             return null;
 
         CharacterStats newChar = new CharacterStats(classData, weapon);
+        // Initialise le state des classes avec la pool de base (T1)
+        ClassEvolutionService.InitState(newChar, baseT1Pool);
+
         characters.Add(newChar);
+
+        // Optional: subscribe ClassEvolutionManager to this character's OnStatsChanged
+        if (ClassEvolutionManager.Instance != null)
+            ClassEvolutionManager.Instance.RegisterCharacterForStats(newChar);
 
         Debug.Log($"[CharacterManager] New character added : {classData.className}");
         return newChar;

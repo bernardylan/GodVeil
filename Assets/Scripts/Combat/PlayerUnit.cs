@@ -42,8 +42,8 @@ public class PlayerUnit : CombatUnit
         if (characterStats == null)
             return new DamageInfo(0f, gameObject, false);
 
-        var classProfs = characterStats.GetClassProficiencies();
-        var weaponProfs = characterStats.GetWeaponProficiencies();
+        var classProfs = characterStats.GetClassProficienciesDict();
+        var weaponProfs = characterStats.GetWeaponProficienciesDict();
 
         float baseDamage;
 
