@@ -512,22 +512,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
       propertyPath: baseT1Pool.Array.size
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: baseT2Pool.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: baseT3Pool.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
       propertyPath: 'baseT1Pool.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8fb8585710a62704d99df0974e6cf9ca, type: 2}
+      objectReference: {fileID: 11400000, guid: f8c0be4c84739dc4e81f510a7560fd62, type: 2}
     - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
       propertyPath: 'baseT1Pool.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: f8c0be4c84739dc4e81f510a7560fd62, type: 2}
+      objectReference: {fileID: 11400000, guid: b8afa206fcd9e354bb96e4b3203bad35, type: 2}
     - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
       propertyPath: 'baseT1Pool.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: b8afa206fcd9e354bb96e4b3203bad35, type: 2}
+      objectReference: {fileID: 11400000, guid: a7cd75e65f96b674c8c91adc3182a9de, type: 2}
     - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
       propertyPath: 'baseT1Pool.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8fb8585710a62704d99df0974e6cf9ca, type: 2}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'baseT2Pool.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8fb8585710a62704d99df0974e6cf9ca, type: 2}
+    - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
+      propertyPath: 'baseT3Pool.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: a7cd75e65f96b674c8c91adc3182a9de, type: 2}
     - target: {fileID: 4851895074104634102, guid: 0c665ff46a24f8948bb0f42cdbaad0b0, type: 3}
@@ -578,6 +594,10 @@ PrefabInstance:
     - target: {fileID: 6951427195760021436, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
       propertyPath: m_BlocksRaycasts
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8593626369894987793, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8826944484071002674, guid: 028aa6f94d546b444911ee4b9b37c69f, type: 3}
       propertyPath: m_Name

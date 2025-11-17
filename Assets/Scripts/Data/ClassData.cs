@@ -19,12 +19,12 @@ public class ClassData : ScriptableObject
             return true;
 
         // 🔥 IMPORTANT :
-        // Force la synchro runtime si jamais la classe a changé et pas encore recalculé
+        // Force la synchro runtime si jamais le profil a changé
         character.RecalculateDerivedStats();
 
         foreach (var req in statRequirements)
         {
-            float currentValue = character.GetProficiency(req.stat);
+            float currentValue = character.GetProficiency(req.stat); // prend maintenant le profil joueur
 
             if (currentValue < req.minimum)
                 return false;
@@ -32,7 +32,6 @@ public class ClassData : ScriptableObject
 
         return true;
     }
-
 
     private void OnValidate()
     {
@@ -45,7 +44,6 @@ public class ClassData : ScriptableObject
             statRequirements[i] = req;
         }
     }
-
 
     [Header("Base Stats")]
     public float baseHP = 500f;

@@ -8,7 +8,7 @@ public class ClassEvolutionUI : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI classNameText;
-    [SerializeField] private TextMeshProUGUI proficiencyText;
+  //  [SerializeField] private TextMeshProUGUI proficiencyText;
     [SerializeField] private Transform skillContainer;
     [SerializeField] private GameObject skillIconPrefab;
     [SerializeField] private GameObject charaPrefab;
@@ -40,12 +40,12 @@ public class ClassEvolutionUI : MonoBehaviour
         Image icon = go.GetComponent<Image>();
         icon.sprite = classData.classIcon;
 
-        // Proficiencies
-        proficiencyText.text = "";
-        foreach (var s in classData.proficiencies.stats)
-        {
-            proficiencyText.text += $"{s.type}: {ProficiencyUtility.GetLetterGrade(s.proficiency)}\n";
-        }
+        //// Proficiencies
+        //proficiencyText.text = "";
+        //foreach (var s in classData.proficiencies.stats)
+        //{
+        //    proficiencyText.text += $"{s.type}: {ProficiencyUtility.GetLetterGrade(s.proficiency)}\n";
+        //}
 
         // add passive
         if (classData.passive != null)
