@@ -19,6 +19,8 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private List<ClassData> baseT1Pool = new();
     [Header("Starting T2 pool")]
     [SerializeField] private List<ClassData> baseT2Pool = new();
+    [Header("Starting T3 pool")]
+    [SerializeField] private List<ClassData> baseT3Pool = new();
 
     private void Awake()
     {
@@ -44,6 +46,18 @@ public class CharacterManager : MonoBehaviour
             character.RecalculateDerivedStats();
         }
         ClassEvolutionManager.Instance.ClearPanels();
+    }
+
+    // Getter helper pour récupérer le pool global d'un tier
+    public List<ClassData> GetBasePoolForTier(TierType tier)
+    {
+        return tier switch
+        {
+            TierType.T1 => baseT1Pool,
+            TierType.T2 => baseT2Pool,
+            TierType.T3 => baseT3Pool,
+            _ => new List<ClassData>()
+        };
     }
 
     public CharacterStats AddCharacter(ClassData classData, WeaponData weapon = null)

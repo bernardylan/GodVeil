@@ -57,23 +57,34 @@ public static class ClassEvolutionService
 
         var state = characterStats.classState;
 
-        if (tier == 1)
+        if (tier == (int)TierType.T1)
         {
             state.chosenT1 = chosen;
-            // build next pool from chosen.nextTierClasses (T2)
-            var next = chosen.nextTierClasses != null ? chosen.nextTierClasses.ToList() : new List<ClassData>();
-            state.pool = next.Where(c => !state.banned.Contains(c)).ToList();
+            characterStats.CurrentClass = chosen;
+            characterStats.RecalculateDerivedStats();
+            // Advance to T2 and use the global T2 pool
+            state.currentTier = TierType.T2;
+            var globalPool = CharacterManager.Instance != null ? CharacterManager.Instance.GetBasePoolForTier(TierType.T2) : new List<ClassData>();
+            state.pool = globalPool.Where(c => c != null && !state.banned.Contains(c)).ToList();
         }
-        else if (tier == 2)
+        else if (tier == (int)TierType.T2)
         {
             state.chosenT2 = chosen;
-            var next = chosen.nextTierClasses != null ? chosen.nextTierClasses.ToList() : new List<ClassData>();
-            state.pool = next.Where(c => !state.banned.Contains(c)).ToList();
+            // Advance to T3 and use the global T3 pool
+            characterStats.CurrentClass = chosen;
+            characterStats.RecalculateDerivedStats();
+            state.currentTier = TierType.T3;
+            var globalPool = CharacterManager.Instance != null ? CharacterManager.Instance.GetBasePoolForTier(TierType.T3) : new List<ClassData>();
+            state.pool = globalPool.Where(c => c != null && !state.banned.Contains(c)).ToList();
         }
-        else if (tier == 3)
+        else if (tier == (int)TierType.T3)
         {
             state.chosenT3 = chosen;
-            state.pool.Clear(); // final tier
+            characterStats.CurrentClass = chosen;
+            characterStats.RecalculateDerivedStats();
+            state.pool.Clear(); // final tier - no next pool
+            // Optionally set currentTier to T3 (already)
+            state.currentTier = TierType.T3;
         }
     }
 
@@ -83,13 +94,20 @@ public static class ClassEvolutionService
     public static void BanClassForCharacter(CharacterStats characterStats, ClassData classToBan)
     {
         if (characterStats == null || classToBan == null) return;
-        var state = characterStats.classState ?? new CharacterClassState();
+
+        // Ensure the character has a classState instance
+        if (characterStats.classState == null)
+            characterStats.classState = new CharacterClassState();
+
+        var state = characterStats.classState;
+
         if (!state.banned.Contains(classToBan))
             state.banned.Add(classToBan);
 
-        if (state.pool.Contains(classToBan))
+        if (state.pool != null && state.pool.Contains(classToBan))
             state.pool.Remove(classToBan);
     }
+
 
     /// <summary>
     /// Get a randomized subset of candidates (non-destructive).

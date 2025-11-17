@@ -10,9 +10,6 @@ public class ClassData : ScriptableObject
     public TierType tier;
     public bool isLocked = false;
 
-    [Header("Next Tier Classes")]
-    public ClassData[] nextTierClasses; // pour T2/T3
-
     [Header("Stat Requirements")]
     [Tooltip("Stats needed for unlock a class")]
     public StatRequirement[] statRequirements;
@@ -21,9 +18,13 @@ public class ClassData : ScriptableObject
         if (statRequirements == null || statRequirements.Length == 0)
             return true;
 
+        // 🔥 IMPORTANT :
+        // Force la synchro runtime si jamais la classe a changé et pas encore recalculé
+        character.RecalculateDerivedStats();
+
         foreach (var req in statRequirements)
         {
-            float currentValue = character.GetProficiency(req.stat); // RUNTIME VALUE
+            float currentValue = character.GetProficiency(req.stat);
 
             if (currentValue < req.minimum)
                 return false;
@@ -31,6 +32,7 @@ public class ClassData : ScriptableObject
 
         return true;
     }
+
 
     private void OnValidate()
     {

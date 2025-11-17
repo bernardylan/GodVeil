@@ -9,6 +9,7 @@ using UnityEngine;
 [Serializable]
 public class CharacterClassState
 {
+    public TierType currentTier = TierType.T1;                // nouveau : tier courant
     public List<ClassData> pool = new List<ClassData>();       // Available classes for the current tier
     public List<ClassData> banned = new List<ClassData>();     // Banned classes (per character)
     public ClassData chosenT1;
@@ -21,6 +22,7 @@ public class CharacterClassState
     {
         if (initialPool != null)
             pool = new List<ClassData>(initialPool);
+        currentTier = TierType.T1;
     }
 
     public void ClearPool() => pool.Clear();
