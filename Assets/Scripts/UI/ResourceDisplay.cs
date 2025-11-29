@@ -3,29 +3,36 @@ using TMPro;
 
 public class ResourceDisplay : MonoBehaviour
 {
-    [SerializeField] private ResourcesSO resource;
+    public ResourcesSO resource;
     [SerializeField] private TextMeshProUGUI text;
 
     private void OnEnable()
     {
         // Update resources
-        if (ResourceManager.Instance != null)
-            ResourceManager.Instance.OnResourceChanged += UpdateDisplay;
-        else
-            Debug.LogError("ResourceManager.Instance is null! Make sure a ResourceManager exists in the scene.");
+        if (ResourceManager.Instance == null)
+        {
+            Debug.LogError("ResourceManager not found!");
+            return;
+        }
+
+        ResourceManager.Instance.OnResourceChanged += OnResourceChanged;
     }
 
     private void OnDisable()
     {
         if (ResourceManager.Instance != null)
-            ResourceManager.Instance.OnResourceChanged -= UpdateDisplay;
+            ResourceManager.Instance.OnResourceChanged -= OnResourceChanged;
     }
 
-    private void UpdateDisplay(ResourcesSO res, float amount)
+    private void OnResourceChanged(ResourcesSO changedResource, float newAmount)
     {
-        if (text == null) return;
-        if (res == null) return;
-        if (res == resource)
-            text.text = $"{amount}";
+        if (changedResource == resource)
+            text.text = newAmount.ToString();
+    }
+
+    public void Refresh()
+    {
+        float current = ResourceManager.Instance.GetAmount(resource);
+        text.text = current.ToString();
     }
 }
