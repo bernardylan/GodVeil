@@ -11,6 +11,7 @@ public class UpgradeWindow : MonoBehaviour
     [SerializeField] private GameObject resourceSlotPrefab;
     [SerializeField] private Transform costContainer;
     [SerializeField] private Button buildButton;
+    [SerializeField] private ResourceDisplay[] resourceDisplays;
 
     private BuildingUpgrade currentBuilding;
 
@@ -19,6 +20,26 @@ public class UpgradeWindow : MonoBehaviour
         Instance = this;
         upgradeWindow.SetActive(false);
         buildButton.onClick.AddListener(OnConfirmClicked);
+    }
+
+    private void OnResourceChanged(ResourcesSO res, float newAmount)
+    {
+        if (upgradeWindow.activeSelf && currentBuilding != null)
+        {
+            UpdateDisplayedCosts();
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (ResourceManager.Instance != null)
+            ResourceManager.Instance.OnResourceChanged += OnResourceChanged;
+    }
+
+    private void OnDisable()
+    {
+        if (ResourceManager.Instance != null)
+            ResourceManager.Instance.OnResourceChanged -= OnResourceChanged;
     }
 
     private void OnConfirmClicked()
@@ -38,12 +59,21 @@ public class UpgradeWindow : MonoBehaviour
         currentBuilding = building;
         buildingName.text = building.data.displayName;
 
-        foreach(Transform child in costContainer)
+        if (!upgradeWindow.activeSelf)
+            upgradeWindow.SetActive(true);
+
+        // Clear old cost display
+        foreach (Transform child in costContainer)
             Destroy(child.gameObject);
 
+        // Create new cost display
         ShowResourceCost(building);
+        // Don't call UpdateDisplayedCosts here - the text is already set in ShowResourceCost
 
-        upgradeWindow.SetActive(true);
+        foreach (var rd in resourceDisplays)
+        {
+            rd.Refresh();
+        }
     }
 
     private void ShowResourceCost(BuildingUpgrade building)
@@ -56,37 +86,49 @@ public class UpgradeWindow : MonoBehaviour
                 break;
 
             GameObject resourceSlot = Instantiate(resourceSlotPrefab, costContainer);
+
             Image icon = resourceSlot.GetComponentInChildren<Image>();
-            TextMeshProUGUI amountText = resourceSlot.GetComponentInChildren<TextMeshProUGUI>();
-
-            RectTransform rt = resourceSlot.GetComponent<RectTransform>();
-            rt.localPosition = Vector3.zero;
-            rt.localScale = Vector3.one;
-            rt.anchoredPosition = Vector2.zero;
-
             icon.sprite = cost.resource.icon;
-            amountText.text = cost.amount.ToString();
+
+            TextMeshProUGUI amountText = resourceSlot.GetComponentInChildren<TextMeshProUGUI>();
+            float currentAmount = ResourceManager.Instance.GetAmount(cost.resource);
+            bool enough = currentAmount >= cost.amount;
+            string color = enough ? "#00FF00" : "#FF0000";
+            amountText.text = $"<color={color}>{currentAmount} / {cost.amount}</color>";
 
             displayed++;
+        }
+    }   
+
+    private void UpdateDisplayedCosts()
+    {
+        int index = 0;
+
+        foreach (Transform child in costContainer)
+        {
+            if (index >= currentBuilding.data.cost.Length)
+                break;
+
+            var cost = currentBuilding.data.cost[index];
+            float currentAmount = ResourceManager.Instance.GetAmount(cost.resource);
+            float requiredAmount = cost.amount;
+
+            TextMeshProUGUI amountText = child.GetComponentInChildren<TextMeshProUGUI>();
+
+            string displayAmount = requiredAmount == 0 ? $"{currentAmount} / 0" : $"{currentAmount} / {requiredAmount}";
+
+            bool enough = requiredAmount == 0 || currentAmount >= requiredAmount;
+            string color = enough ? "#00FF00" : "#FF0000";
+
+            amountText.text = $"<color={color}>{displayAmount}</color>";
+
+            index++;
         }
     }
 
     public void HideUpgradeWindow()
     {
-        upgradeWindow.SetActive(false);
         currentBuilding = null;
-    }
-
-    private string GetCostString(BuildingUpgrade building)
-    {
-        string result = "";
-        foreach(var cost in building.data.cost)
-        {
-            if (cost.resource == null)
-                continue;
-            result += $"{cost.resource.displayName} : {cost.amount}\n";
-        }
-
-        return result.TrimEnd('\n');
+        upgradeWindow.SetActive(false);
     }
 }
